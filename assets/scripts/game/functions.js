@@ -27,19 +27,7 @@ GameBoard.prototype.whoWon = function () {
 
 let currGame = new GameBoard(['', '', '', '', '', '', '', '', ''], 'X')
 
-const ifWin = function () {
-  $('.who-won').text(`Player ${currGame.currPlayer} won!`)
-}
-
-const restartGame = function () {
-  currGame = new GameBoard(['', '', '', '', '', '', '', '', ''], 'X')
-  $('.col-4').text('')
-  $('.who-won').text('')
-}
-
 module.exports = {
-  restartGame,
-  ifWin,
   GameBoard,
   currGame
 }
