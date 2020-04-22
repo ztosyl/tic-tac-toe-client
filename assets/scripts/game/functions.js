@@ -37,23 +37,9 @@ const restartGame = function () {
   $('.who-won').text('')
 }
 
-const addLetter = function (event) {
-  if ($(event.target).text() === '') {
-    $(event.target).text(currGame.currPlayer)
-    currGame.tray[$(event.target).data('id')] = currGame.currPlayer
-    if (currGame.whoWon() !== null) {
-      ifWin()
-    } else if (currGame.currPlayer === 'X') {
-      currGame.currPlayer = 'O'
-    } else {
-      currGame.currPlayer = 'X'
-    }
-  }
-}
-
 module.exports = {
-  addLetter,
+  restartGame,
+  ifWin,
   GameBoard,
-  currGame,
-  restartGame
+  currGame
 }

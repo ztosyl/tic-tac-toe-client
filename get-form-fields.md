@@ -1,4 +1,3 @@
-### How to use `getFormFields`
 
 To be able to send data to an API, we'll need a way to retrieve that data from
 forms in the DOM. It turns out that needing to grab some user
