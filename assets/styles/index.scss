@@ -1,1 +1,19 @@
 @import '~bootstrap/scss/bootstrap';
+@import './variables';
+
+.right-bottom {
+  border-bottom: $border-style;
+  border-right: $border-style;
+}
+
+.bottom {
+  border-bottom: $border-style;
+}
+
+.right {
+  border-right: $border-style;
+}
+
+.row > div {
+  height: 100px;
+}
