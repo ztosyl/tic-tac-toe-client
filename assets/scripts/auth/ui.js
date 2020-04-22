@@ -20,12 +20,39 @@ const signInSuccess = function (data) {
 
 const signInFailure = function (error) {
   console.log('Sign in failed. Error: ' + error)
-  $('#message').text('Your sign-in has failed.').css('color', 'red')
+  $('.message').text('Your sign-in has failed.').css('color', 'red')
+}
+
+const signOutSuccess = function (data) {
+  console.log(`Sign out has succeeded. Data is: ${data}`)
+  $('.message').text('Sign out successful!').css('color', 'green')
+  store.user = null
+  $('.unauthenticated').show()
+  $('.authenticated').hide()
+}
+
+const signOutFailure = function (error) {
+  console.log(`Sign out has failed. Error is: ${error}`)
+  $('.message').text('Sign out failed!').css('color', 'red')
+}
+
+const changePasswordSuccess = function (data) {
+  console.log(`Password change succeeded. Data is: ${data}`)
+  $('.message').text('Password change successful!').css('color', 'green')
+}
+
+const changePasswordFailure = function (error) {
+  console.log(`Password change failed. Error is: ${error}`)
+  $('.message').text('Password change failed!').css('color', 'red')
 }
 
 module.exports = {
   signUpSuccess,
   signUpFailure,
   signInSuccess,
-  signInFailure
+  signInFailure,
+  signOutSuccess,
+  signOutFailure,
+  changePasswordSuccess,
+  changePasswordFailure
 }
