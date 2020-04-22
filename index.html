@@ -28,7 +28,22 @@
         <div data-id="8"class="col-4"></div>
       </div>
     </div>
-    <form>
-      <input required type="text"
+    <form class='sign-in'>
+      <input required type="text" name="user[email]" placeholder="Email">
+      <input required type="password" name="user[password]" placeholder="Password">
+      <button type="submit">Sign In</button>
+    </form>
+    <form class='sign-up'>
+      <input required type="text" name="user[email]" placeholder="Email">
+      <input required type="password" name="user[password]" placeholder="Password">
+      <input required type="password" name="user[password_confirmation]" placeholder="Confirm Password">
+      <button type="submit">Sign Up</button>
+    </form>
+    <form class='change-password'>
+      <input required type="password" name="user[password]" placeholder="Old Password">
+      <input required type="text" name="user[password]" placeholder="New Password">
+      <button type="submit">Change Password</button>
+    </form>
+    <button class="sign-out" type="submit">Sign Out</button>
     </body>
 </html>
