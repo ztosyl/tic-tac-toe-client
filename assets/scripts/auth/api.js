@@ -18,6 +18,7 @@ const signIn = function (data) {
 }
 
 const signOut = function () {
+  $('.col-4').text('')
   return $.ajax({
     url: config.apiUrl + 'sign-out',
     method: 'DELETE',

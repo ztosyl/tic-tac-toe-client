@@ -21,3 +21,16 @@
 .authenticated {
   display: none;
 }
+
+h1 {
+  font-variant: small-caps;
+}
+
+nav {
+  background-color: $accent-color;
+  margin-bottom: 20px;
+}
+
+modal {
+  box-shadow: 10px 10px 5px grey;
+}

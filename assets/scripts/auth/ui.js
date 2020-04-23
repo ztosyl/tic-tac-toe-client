@@ -1,31 +1,40 @@
 const store = require('../store')
+// const api = require('./api')
+// const gameEvents = require('../game/events')
 
-const signUpSuccess = function (data) {
-  console.log('Sign up succeeded. Data: ' + data)
-  $('.message').text('You have successfully signed up!').css('color', 'green')
+const modalSwitch = function () {
+  $('#sign-up-modal').modal('hide')
+  $('.messaging').text('')
+  $('#sign-in-modal').modal('show')
 }
 
-const signUpFailure = function (error) {
-  console.log('Sign up failed. Error: ' + error)
-  $('.message').text('Your sign-up has failed.').css('color', 'red')
+const signUpSuccess = function () {
+  // console.log('Sign up succeeded. Data: ' + data)
+  $('.messaging').text('You have successfully signed up! You will be redirected to sign in now.').css('color', 'green')
+  setTimeout(modalSwitch, 2000)
+}
+
+const signUpFailure = function () {
+  // console.log('Sign up failed. Error: ' + error)
+  $('.messaging').text('Sign-up failed. Try again with a different e-mail!').css('color', 'red')
 }
 
 const signInSuccess = function (data) {
-  console.log('Sign in succeeded. Data: ' + data)
-  $('.message').text('You have successfully signed in!').css('color', 'green')
   store.user = data.user
+  // console.log(gameEvents.onCreate())
+  $('.messaging').text('You have successfully signed in!').css('color', 'green')
   $('.authenticated').show()
   $('.unauthenticated').hide()
+  $('#sign-in-modal').modal('hide')
+  $('.messaging').text('')
 }
 
-const signInFailure = function (error) {
-  console.log('Sign in failed. Error: ' + error)
-  $('.message').text('Your sign-in has failed.').css('color', 'red')
+const signInFailure = function () {
+  // console.log('Sign in failed. Error: ' + error)
+  $('.messaging').text('Your sign-in has failed. Try again!').css('color', 'red')
 }
 
-const signOutSuccess = function (data) {
-  console.log(`Sign out has succeeded. Data is: ${data}`)
-  $('.message').text('Sign out successful!').css('color', 'green')
+const signOutSuccess = function () {
   store.user = null
   $('.unauthenticated').show()
   $('.authenticated').hide()
@@ -33,17 +42,14 @@ const signOutSuccess = function (data) {
 
 const signOutFailure = function (error) {
   console.log(`Sign out has failed. Error is: ${error}`)
-  $('.message').text('Sign out failed!').css('color', 'red')
 }
 
-const changePasswordSuccess = function (data) {
-  console.log(`Password change succeeded. Data is: ${data}`)
-  $('.message').text('Password change successful!').css('color', 'green')
+const changePasswordSuccess = function () {
+  $('.messaging').text('Password change successful!').css('color', 'green')
 }
 
-const changePasswordFailure = function (error) {
-  console.log(`Password change failed. Error is: ${error}`)
-  $('.message').text('Password change failed!').css('color', 'red')
+const changePasswordFailure = function () {
+  $('.messaging').text('Password change failed!').css('color', 'red')
 }
 
 module.exports = {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>Tic Tac Toe</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
@@ -12,11 +12,106 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <h1>TIC TAC TOE!</h1>
-      <div class="who-won"></div>
-      <div class="message"></div>
+      <div id="sign-up-modal" class="modal fade container" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Sign Up Here</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body row">
+        <form class='sign-up'>
+          <div class="col-12"><input required type="text" name="credentials[email]" placeholder="Email"></div>
+          <div class="col-12"><input required type="password" name="credentials[password]" placeholder="Password"></div>
+          <div class="col-12"><input required type="password" name="credentials[password_confirmation]" placeholder="Confirm Password"></div>
+          <div class="col-12"><button type="submit">Sign Up</button></div>
+        </form>
+      <div class="messaging"></div>
+      <div class="col-12"><a href="#sign-in-modal" data-toggle="modal" data-target="#sign-in-modal" data-dismiss="modal">Already have an account? Click here!</a></div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade container" id="sign-in-modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+  <h5 class="modal-title" id="staticBackdropLabel">Sign In Here</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body row">
+  <form class='sign-in'>
+    <div class="col-12"><input required type="text" name="credentials[email]" placeholder="Email"></div>
+    <div class="col-12"><input required type="password" name="credentials[password]" placeholder="Password"></div>
+    <div class="col-12"><button type="submit">Sign In</button></div>
+  </form>
+  <div class="messaging"></div>
+<div class="col-12"><a href="#sign-up-modal" data-toggle="modal" data-target="#sign-up-modal" data-dismiss="modal">Don't have an account? Click here!</a></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal fade container" id="change-password-modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+  <h5 class="modal-title" id="staticBackdropLabel">Update Your Password</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body row">
+  <form class='change-password'>
+    <input required type="password" name="passwords[old]" placeholder="Old Password">
+    <input required type="password" name="passwords[new]" placeholder="New Password">
+    <button type="submit">Change Password</button>
+  </form>
+  <div class="messaging">Password updated successfully.</div>
+<div class="col-12"><button data-toggle="modal" data-dismiss="modal">Close</button></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+<nav class="navbar navbar-light">
+  <h1 class="navbar-brand">Tic Tac Toe</h1>
+      <div class="authenticated">
+      <ul class="navbar-nav">
+  <li class="nav-item mr-sm-2">
+    <a class="nav-link active" href="#change-password-modal" data-toggle="modal" data-target="#change-password-modal">Change Password</a>
+  </li>
+  <li class="nav-item mr-sm-2">
+    <a class="nav-link" href="#">Stats</a>
+  </li>
+  <li class="nav-item mr-sm-2">
+    <button class="nav-link sign-out" type="submit" >Sign Out</button>
+  </li>
+</ul>
+</div>
+<div class ="unauthenticated">
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link active" href="#sign-in-modal" data-toggle="modal" data-target="#sign-in-modal">Sign In</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#sign-up-modal" data-toggle="modal" data-target="#sign-up-modal">Sign Up</a>
+</ul>
+</div>
+</nav>
+     <div class="who-won"></div>
       <button class="restart authenticated">RESTART GAME</button>
-      <div class="container">
+      <div class="container-sm">
       <div class="row">
         <div data-id="0" class="col-4 right-bottom"></div>
         <div data-id="1"class="col-4 right-bottom"></div>
@@ -29,8 +124,8 @@
         <div data-id="8"class="col-4"></div>
       </div>
     </div>
-    <div class="unauthenticated">
-    <form class='sign-in'>
+    <!-- <div class="unauthenticated">
+  <form class='sign-in'>
       <input required type="text" name="credentials[email]" placeholder="Email">
       <input required type="password" name="credentials[password]" placeholder="Password">
       <button type="submit">Sign In</button>
@@ -41,7 +136,7 @@
       <input required type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
       <button type="submit">Sign Up</button>
     </form>
-    </div>
+  </div>
     <div class="authenticated">
     <form class='change-password'>
       <input required type="password" name="passwords[old]" placeholder="Old Password">
@@ -49,6 +144,6 @@
       <button type="submit">Change Password</button>
     </form>
     <button class="sign-out" type="submit">Sign Out</button>
-   </div>
+   </div>-->
     </body>
 </html>
