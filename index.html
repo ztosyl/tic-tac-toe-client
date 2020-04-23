@@ -21,12 +21,12 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body row">
+      <div class="modal-body row d-flex">
         <form class='sign-up'>
           <div class="col-12"><input required type="text" name="credentials[email]" placeholder="Email"></div>
           <div class="col-12"><input required type="password" name="credentials[password]" placeholder="Password"></div>
           <div class="col-12"><input required type="password" name="credentials[password_confirmation]" placeholder="Confirm Password"></div>
-          <div class="col-12"><button type="submit">Sign Up</button></div>
+          <div class="col-12"><button class="btn btn-success" type="submit">Sign Up</button></div>
         </form>
       <div class="messaging"></div>
       <div class="col-12"><a href="#sign-in-modal" data-toggle="modal" data-target="#sign-in-modal" data-dismiss="modal">Already have an account? Click here!</a></div>
@@ -46,11 +46,11 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<div class="modal-body row">
+<div class="modal-body row d-flex">
   <form class='sign-in'>
     <div class="col-12"><input required type="text" name="credentials[email]" placeholder="Email"></div>
     <div class="col-12"><input required type="password" name="credentials[password]" placeholder="Password"></div>
-    <div class="col-12"><button type="submit">Sign In</button></div>
+    <div class="col-12"><button class="btn btn-success" type="submit">Sign In</button></div>
   </form>
   <div class="messaging"></div>
 <div class="col-12"><a href="#sign-up-modal" data-toggle="modal" data-target="#sign-up-modal" data-dismiss="modal">Don't have an account? Click here!</a></div>
@@ -70,11 +70,11 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<div class="modal-body row">
+<div class="modal-body row d-flex">
   <form class='change-password'>
     <input required type="password" name="passwords[old]" placeholder="Old Password">
     <input required type="password" name="passwords[new]" placeholder="New Password">
-    <button type="submit">Change Password</button>
+    <button class="btn btn-success" type="submit">Change Password</button>
   </form>
   <div class="messaging">Password updated successfully.</div>
 <div class="col-12"><button data-toggle="modal" data-dismiss="modal">Close</button></div>
@@ -111,7 +111,7 @@
 </nav>
      <div class="who-won"></div>
       <button class="restart authenticated">RESTART GAME</button>
-      <div class="container-sm">
+      <div class="container-md d-flex">
       <div class="row">
         <div data-id="0" class="col-4 right-bottom"></div>
         <div data-id="1"class="col-4 right-bottom"></div>
