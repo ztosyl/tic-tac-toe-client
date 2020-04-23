@@ -1,6 +1,6 @@
 const store = require('../store')
 // const api = require('./api')
-// const gameEvents = require('../game/events')
+const gameEvents = require('../game/events')
 
 const modalSwitch = function () {
   $('#sign-up-modal').modal('hide')
@@ -27,6 +27,8 @@ const signInSuccess = function (data) {
   $('.unauthenticated').hide()
   $('#sign-in-modal').modal('hide')
   $('.messaging').text('')
+  gameEvents.onCreate()
+  $('.current-user').text(`Welcome, ${data.user.email}!`)
 }
 
 const signInFailure = function () {
@@ -38,6 +40,7 @@ const signOutSuccess = function () {
   store.user = null
   $('.unauthenticated').show()
   $('.authenticated').hide()
+  $('.current-user').text('')
 }
 
 const signOutFailure = function (error) {

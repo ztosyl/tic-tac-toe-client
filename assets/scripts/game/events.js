@@ -5,16 +5,13 @@ const ui = require('./ui')
 const store = require('../store')
 
 const addLetter = function (event) {
-  $('.message').text('')
+  // $('.message').text('')
   const game = func.currGame
   const index = $(event.target).data('id')
   if (($(event.target).text() === '') && (store.user !== null) && (store.user !== undefined)) {
     $(event.target).text(game.currPlayer)
     func.currGame.tray[index] = game.currPlayer
     const over = game.isOver()
-    console.log(index)
-    console.log(game.currPlayer)
-    console.log(over)
     api.update(index, game.currPlayer, over)
       .then(ui.updateSuccess)
       .catch(ui.updateFailure)
@@ -30,6 +27,7 @@ const addLetter = function (event) {
       game.currPlayer = 'x'
     }
   }
+  console.log(game.currPlayer)
 }
 
 const onCreate = function () {
@@ -40,7 +38,7 @@ const onCreate = function () {
 
 const restartGame = function (event) {
   func.currGame = new func.GameBoard(['', '', '', '', '', '', '', '', ''], 'x', false)
-  $('.col-4').text('')
+  $('.col-2').text('')
   $('.who-won').text('')
   event.preventDefault()
   onCreate()

@@ -22,15 +22,77 @@
   display: none;
 }
 
-h1, h5 {
+h5 {
+  font-family: $main-font;
   font-variant: small-caps;
+  font-weight: bold;
+}
+
+h1 {
+  color: $font-color;
+  font-family: $main-font;
+  font-size: 50px;
+  font-variant: small-caps;
+  font-weight: bold;
+}
+
+h3 {
+  color: $accent-color;
+  font-family: $main-font;
+  font-variant: small-caps;
+  margin-left: 30px;
 }
 
 nav {
   background-color: $accent-color;
-  margin-bottom: 20px;
+  box-shadow: $shadow;
+  margin-bottom: 30px;
+}
+
+a {
+  font-family: $main-font;
+}
+
+li > a {
+  color: $font-color;
+
+  &:hover {
+    color: #DCDDEE;
+  }
+}
+
+p {
+  font-family: $main-font
 }
 
 .row {
   justify-content: center;
+}
+
+.col-12 {
+  padding: 5px;
+}
+
+.card {
+  margin: 40px;
+}
+
+.btn-success {
+  margin: 0 auto;
+  font-family: $main-font;
+}
+
+.btn-primary {
+  margin: 30px;
+  padding: 5px;
+  font-family: $main-font;
+}
+
+.btn-button {
+  margin: 25px;
+  font-family: $main-font;
+}
+
+input {
+  font-family: $main-font;
 }
