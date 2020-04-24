@@ -2,11 +2,12 @@
 
 const authEvents = require('./auth/events.js')
 const gameEvents = require('./game/events.js')
+const authUi = require('./auth/ui.js')
 
 $(() => {
   $('#sign-up-modal').modal('show')
-  $('.go-to-sign-in').on('click', authEvents.modalSwitch)
-  $('.go-to-sign-up').on('click', authEvents.modalSwitchOtherWay)
+  $('.go-to-sign-in').on('click', authUi.modalSwitch)
+  $('.go-to-sign-up').on('click', authUi.modalSwitchOtherWay)
   $('.col-2').on('click', gameEvents.addLetter)
   $('.restart').on('click', gameEvents.restartGame)
   $('.sign-up').on('submit', authEvents.onSignUp)

@@ -1,10 +1,22 @@
 const store = require('../store')
 const gameEvents = require('../game/events')
-const events = require('./events')
+// const events = require('./events')
+
+const modalSwitch = function () {
+  $('#sign-up-modal').modal('hide')
+  $('#sign-in-modal').modal('show')
+  $('.messaging').text('')
+}
+
+const modalSwitchOtherWay = function () {
+  $('#sign-in-modal').modal('hide')
+  $('#sign-up-modal').modal('show')
+  $('.messaging').text('')
+}
 
 const signUpSuccess = function () {
-  $('.messaging').text('You have successfully signed up! You will be redirected to sign in now.').css('color', 'green')
-  setTimeout(events.modalSwitch, 3000)
+  $('.messaging').text('Thanks! You will now be redirected to sign-in.').css('color', 'green')
+  setTimeout(modalSwitch, 1000)
 }
 
 const signUpFailure = function () {
@@ -53,5 +65,7 @@ module.exports = {
   signOutSuccess,
   signOutFailure,
   changePasswordSuccess,
-  changePasswordFailure
+  changePasswordFailure,
+  modalSwitch,
+  modalSwitchOtherWay
 }
