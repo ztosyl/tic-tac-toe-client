@@ -5,7 +5,6 @@ const ui = require('./ui')
 const store = require('../store')
 
 const addLetter = function (event) {
-  // $('.message').text('')
   const game = func.currGame
   const index = $(event.target).data('id')
   if (($(event.target).text() === '') && (store.user !== null) && (store.user !== undefined)) {
@@ -45,8 +44,7 @@ const onCreate = function () {
 const restartGame = function (event) {
   func.currGame = new func.GameBoard(['', '', '', '', '', '', '', '', ''], 'X', false)
   $('.col-2').text('')
-  $('.card-text').text('Start the game by clicking on one of the spaces.')
-  event.preventDefault()
+  $('.game-status').html('<p class="card-text">Start the game by clicking on one of the spaces.</p>')
   onCreate()
 }
 

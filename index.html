@@ -110,7 +110,6 @@
 </div>
 </nav>
 <h3 class="current-user"></h3>
-     <div class="who-won"></div>
       <div class="container board">
       <div class="row d-flex">
         <div data-id="0" class="col-2 right-bottom"></div>
@@ -119,10 +118,14 @@
         <div class="col-4"><div class="card" >
   <div class="card-body">
     <h5 class="card-title">Game Status</h5>
-    <div class="game-status"><p class="card-text">Start the game by clicking on one of the spaces.</p></div>
-    <button class="restart authenticated btn btn-primary">Restart Game</button>
+      <div class="game-status">
+        <p class="card-text unauthenticated">Log in to begin!</p>
+        <p class="card-text authenticated">Start the game by clicking on one of the spaces.</p>
+      </div>
   </div>
-</div></div>
+  <button class="restart authenticated btn btn-primary">Restart Game</button>
+</div>
+</div>
       </div>
       <div class="row d-flex">
         <div data-id="3"class="col-2 right-bottom"></div>

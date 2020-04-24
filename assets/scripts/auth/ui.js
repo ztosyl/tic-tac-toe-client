@@ -41,6 +41,7 @@ const signOutSuccess = function () {
   $('.unauthenticated').show()
   $('.authenticated').hide()
   $('.current-user').text('')
+  $('.game-status').html('<p class="card-text unauthenticated">Log in to begin!</p><p class="card-text authenticated">Start the game by clicking on one of the spaces.</p>')
 }
 
 const signOutFailure = function (error) {
