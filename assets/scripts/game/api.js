@@ -3,7 +3,7 @@ const store = require('../store')
 
 const getFinishedGames = function () {
   return $.ajax({
-    url: config.apiUrl + 'games/?over=true',
+    url: config.apiUrl + 'games?over=true',
     headers: {
       Authorization: 'Token token=' + store.user.token
     }

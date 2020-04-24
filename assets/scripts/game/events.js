@@ -7,9 +7,12 @@ const store = require('../store')
 const addLetter = function (event) {
   const game = func.currGame
   const index = $(event.target).data('id')
-  if (($(event.target).text() === '') && (store.user !== null) && (store.user !== undefined) && (func.currGame.isOver() !== true)) {
+  const gameOver = game.isOver()
+  console.log('gameOver is', gameOver)
+  if (($(event.target).text() === '') && (store.user !== null) && (store.user !== undefined) && (gameOver === false)) {
+    game.tray[index] = game.currPlayer
     api.update(index, game.currPlayer, game.isOver())
-      .then(ui.updateSuccess(event))
+      .then(() => { ui.updateSuccess(event)} )
       .catch(ui.updateFailure)
   }
 }

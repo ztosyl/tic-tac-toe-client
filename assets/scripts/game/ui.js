@@ -13,7 +13,7 @@ const updateSuccess = function (event) {
   const game = func.currGame
   const index = $(event.target).data('id')
   $(event.target).text(game.currPlayer)
-  func.currGame.tray[index] = game.currPlayer
+  // func.currGame.tray[index] = game.currPlayer
   if (($('.card-text.authenticated').text() === 'Start the game by clicking on one of the spaces.') || ($('.card-text.authenticated').text() === 'Start the game by clicking on one of the spaces.')) {
     $('.card-text').text(`Player ${game.currPlayer} played in space ${index + 1}`)
   } else {
@@ -39,6 +39,7 @@ const updateFailure = function () {
 }
 
 const successfullyGotGames = function (data) {
+  console.log('Data is: ', data)
   const statsArray = func.calcStats(data)
   const total = (statsArray[0] + statsArray[1] + statsArray[2])
   $('.total-games').text(`${total}`)
