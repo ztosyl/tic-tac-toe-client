@@ -482,8 +482,7 @@ module.exports = function (TYPE, $create) {
 
 
 /***/ }),
-/* 27 */,
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -970,7 +969,7 @@ if (__webpack_require__(7)) {
 
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Map = __webpack_require__(119);
@@ -1027,6 +1026,7 @@ module.exports = {
 
 
 /***/ }),
+/* 29 */,
 /* 30 */
 /***/ (function(module, exports) {
 
@@ -3876,64 +3876,6 @@ module.exports = Math.scale || function scale(x, inLow, inHigh, outLow, outHigh)
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {
-
-var getFormFields = __webpack_require__(342);
-var api = __webpack_require__(344);
-var ui = __webpack_require__(345);
-
-var onSignUp = function onSignUp(event) {
-  event.preventDefault();
-  var form = event.target;
-  var formData = getFormFields(form);
-  api.signUp(formData).then(ui.signUpSuccess).catch(ui.signUpFailure);
-};
-
-var onSignIn = function onSignIn(event) {
-  event.preventDefault();
-  var form = event.target;
-  var formData = getFormFields(form);
-  api.signIn(formData).then(ui.signInSuccess).catch(ui.signInFailure);
-};
-
-var onSignOut = function onSignOut(event) {
-  api.signOut().then(ui.signOutSuccess).catch(ui.signOutFailure);
-};
-
-var onChangePassword = function onChangePassword(event) {
-  event.preventDefault();
-  var form = event.target;
-  var formData = getFormFields(form);
-  api.changePassword(formData).then(ui.changePasswordSuccess).catch(ui.changePasswordFailure);
-};
-
-var modalSwitch = function modalSwitch() {
-  $('#sign-up-modal').modal('hide');
-  $('#sign-in-modal').modal('show');
-  $('.messaging').text('');
-};
-
-var modalSwitchOtherWay = function modalSwitchOtherWay() {
-  $('#sign-in-modal').modal('hide');
-  $('#sign-up-modal').modal('show');
-  $('.messaging').text('');
-};
-
-module.exports = {
-  onSignUp: onSignUp,
-  onSignIn: onSignIn,
-  onSignOut: onSignOut,
-  onChangePassword: onChangePassword,
-  modalSwitch: modalSwitch,
-  modalSwitchOtherWay: modalSwitchOtherWay
-};
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
-
-/***/ }),
-/* 133 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 
 
 var apiUrl = void 0;
@@ -3951,6 +3893,86 @@ if (window.location.hostname === 'localhost') {
 module.exports = {
   apiUrl: apiUrl
 };
+
+/***/ }),
+/* 133 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {
+
+var store = __webpack_require__(53);
+var gameEvents = __webpack_require__(134);
+// const events = require('./events')
+
+var modalSwitch = function modalSwitch() {
+  $('#sign-up-modal').modal('hide');
+  $('#sign-in-modal').modal('show');
+  $('.messaging').text('');
+};
+
+var modalSwitchOtherWay = function modalSwitchOtherWay() {
+  $('#sign-in-modal').modal('hide');
+  $('#sign-up-modal').modal('show');
+  $('.messaging').text('');
+};
+
+var signUpSuccess = function signUpSuccess() {
+  $('.messaging').text('Thanks! You will now be redirected to sign-in.').css('color', 'green');
+  setTimeout(modalSwitch, 1000);
+};
+
+var signUpFailure = function signUpFailure() {
+  $('.messaging').text('Sign-up failed. Try again with a different e-mail!').css('color', 'red');
+};
+
+var signInSuccess = function signInSuccess(data) {
+  store.user = data.user;
+  $('.messaging').text('').css('color', 'green');
+  $('.authenticated').show();
+  $('.unauthenticated').hide();
+  $('#sign-in-modal').modal('hide');
+  gameEvents.onCreate();
+  $('.current-user').text('Welcome, ' + data.user.email + '!');
+};
+
+var signInFailure = function signInFailure() {
+  $('.messaging').text('Your sign-in has failed. Try again!').css('color', 'red');
+};
+
+var signOutSuccess = function signOutSuccess() {
+  store.user = null;
+  $('.unauthenticated').show();
+  $('.authenticated').hide();
+  $('.current-user').text('');
+  $('.game-status').html('<p class="card-text unauthenticated">Log in to begin!</p><p class="card-text authenticated">Start the game by clicking on one of the spaces.</p>');
+};
+
+var signOutFailure = function signOutFailure() {
+  $('<p class="card-text">Sign-out has failed. Please try again or reload the page.</p>').appendTo('.card-text:last').css('color', 'red');
+};
+
+var changePasswordSuccess = function changePasswordSuccess() {
+  $('.messaging').text('Password change successful!').css('color', 'green');
+};
+
+var changePasswordFailure = function changePasswordFailure() {
+  $('.messaging').text('Password change failed!').css('color', 'red');
+};
+
+module.exports = {
+  signUpSuccess: signUpSuccess,
+  signUpFailure: signUpFailure,
+  signInSuccess: signInSuccess,
+  signInFailure: signInFailure,
+  signOutSuccess: signOutSuccess,
+  signOutFailure: signOutFailure,
+  changePasswordSuccess: changePasswordSuccess,
+  changePasswordFailure: changePasswordFailure,
+  modalSwitch: modalSwitch,
+  modalSwitchOtherWay: modalSwitchOtherWay
+};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(29)))
 
 /***/ }),
 /* 134 */
@@ -3994,7 +4016,7 @@ module.exports = {
   onCreate: onCreate,
   onStats: onStats
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(29)))
 
 /***/ }),
 /* 135 */
@@ -4121,7 +4143,7 @@ __webpack_require__(348);
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
-   true ? factory(exports, __webpack_require__(27), __webpack_require__(138)) :
+   true ? factory(exports, __webpack_require__(29), __webpack_require__(138)) :
   typeof define === 'function' && define.amd ? define(['exports', 'jquery', 'popper.js'], factory) :
   (global = global || self, factory(global.bootstrap = {}, global.jQuery, global.Popper));
 }(this, (function (exports, $, Popper) { 'use strict';
@@ -14412,7 +14434,7 @@ $export($export.G + $export.W + $export.F * !__webpack_require__(64).ABV, {
 /* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(28)('Int8', 1, function (init) {
+__webpack_require__(27)('Int8', 1, function (init) {
   return function Int8Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -14423,7 +14445,7 @@ __webpack_require__(28)('Int8', 1, function (init) {
 /* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(28)('Uint8', 1, function (init) {
+__webpack_require__(27)('Uint8', 1, function (init) {
   return function Uint8Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -14434,7 +14456,7 @@ __webpack_require__(28)('Uint8', 1, function (init) {
 /* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(28)('Uint8', 1, function (init) {
+__webpack_require__(27)('Uint8', 1, function (init) {
   return function Uint8ClampedArray(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -14445,7 +14467,7 @@ __webpack_require__(28)('Uint8', 1, function (init) {
 /* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(28)('Int16', 2, function (init) {
+__webpack_require__(27)('Int16', 2, function (init) {
   return function Int16Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -14456,7 +14478,7 @@ __webpack_require__(28)('Int16', 2, function (init) {
 /* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(28)('Uint16', 2, function (init) {
+__webpack_require__(27)('Uint16', 2, function (init) {
   return function Uint16Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -14467,7 +14489,7 @@ __webpack_require__(28)('Uint16', 2, function (init) {
 /* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(28)('Int32', 4, function (init) {
+__webpack_require__(27)('Int32', 4, function (init) {
   return function Int32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -14478,7 +14500,7 @@ __webpack_require__(28)('Int32', 4, function (init) {
 /* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(28)('Uint32', 4, function (init) {
+__webpack_require__(27)('Uint32', 4, function (init) {
   return function Uint32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -14489,7 +14511,7 @@ __webpack_require__(28)('Uint32', 4, function (init) {
 /* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(28)('Float32', 4, function (init) {
+__webpack_require__(27)('Float32', 4, function (init) {
   return function Float32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -14500,7 +14522,7 @@ __webpack_require__(28)('Float32', 4, function (init) {
 /* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(28)('Float64', 8, function (init) {
+__webpack_require__(27)('Float64', 8, function (init) {
   return function Float64Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -15553,7 +15575,7 @@ $export($export.S, 'Promise', { 'try': function (callbackfn) {
 /* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(29);
+var metadata = __webpack_require__(28);
 var anObject = __webpack_require__(1);
 var toMetaKey = metadata.key;
 var ordinaryDefineOwnMetadata = metadata.set;
@@ -15567,7 +15589,7 @@ metadata.exp({ defineMetadata: function defineMetadata(metadataKey, metadataValu
 /* 324 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(29);
+var metadata = __webpack_require__(28);
 var anObject = __webpack_require__(1);
 var toMetaKey = metadata.key;
 var getOrCreateMetadataMap = metadata.map;
@@ -15588,7 +15610,7 @@ metadata.exp({ deleteMetadata: function deleteMetadata(metadataKey, target /* , 
 /* 325 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(29);
+var metadata = __webpack_require__(28);
 var anObject = __webpack_require__(1);
 var getPrototypeOf = __webpack_require__(17);
 var ordinaryHasOwnMetadata = metadata.has;
@@ -15613,7 +15635,7 @@ metadata.exp({ getMetadata: function getMetadata(metadataKey, target /* , target
 
 var Set = __webpack_require__(121);
 var from = __webpack_require__(130);
-var metadata = __webpack_require__(29);
+var metadata = __webpack_require__(28);
 var anObject = __webpack_require__(1);
 var getPrototypeOf = __webpack_require__(17);
 var ordinaryOwnMetadataKeys = metadata.keys;
@@ -15636,7 +15658,7 @@ metadata.exp({ getMetadataKeys: function getMetadataKeys(target /* , targetKey *
 /* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(29);
+var metadata = __webpack_require__(28);
 var anObject = __webpack_require__(1);
 var ordinaryGetOwnMetadata = metadata.get;
 var toMetaKey = metadata.key;
@@ -15651,7 +15673,7 @@ metadata.exp({ getOwnMetadata: function getOwnMetadata(metadataKey, target /* , 
 /* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(29);
+var metadata = __webpack_require__(28);
 var anObject = __webpack_require__(1);
 var ordinaryOwnMetadataKeys = metadata.keys;
 var toMetaKey = metadata.key;
@@ -15665,7 +15687,7 @@ metadata.exp({ getOwnMetadataKeys: function getOwnMetadataKeys(target /* , targe
 /* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(29);
+var metadata = __webpack_require__(28);
 var anObject = __webpack_require__(1);
 var getPrototypeOf = __webpack_require__(17);
 var ordinaryHasOwnMetadata = metadata.has;
@@ -15687,7 +15709,7 @@ metadata.exp({ hasMetadata: function hasMetadata(metadataKey, target /* , target
 /* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(29);
+var metadata = __webpack_require__(28);
 var anObject = __webpack_require__(1);
 var ordinaryHasOwnMetadata = metadata.has;
 var toMetaKey = metadata.key;
@@ -15702,7 +15724,7 @@ metadata.exp({ hasOwnMetadata: function hasOwnMetadata(metadataKey, target /* , 
 /* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var $metadata = __webpack_require__(29);
+var $metadata = __webpack_require__(28);
 var anObject = __webpack_require__(1);
 var aFunction = __webpack_require__(10);
 var toMetaKey = $metadata.key;
@@ -16828,13 +16850,14 @@ module.exports = function (regExp, replace) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function($) {
 
-var authEvents = __webpack_require__(132);
+var authEvents = __webpack_require__(342);
 var gameEvents = __webpack_require__(134);
+var authUi = __webpack_require__(133);
 
 $(function () {
   $('#sign-up-modal').modal('show');
-  $('.go-to-sign-in').on('click', authEvents.modalSwitch);
-  $('.go-to-sign-up').on('click', authEvents.modalSwitchOtherWay);
+  $('.go-to-sign-in').on('click', authUi.modalSwitch);
+  $('.go-to-sign-up').on('click', authUi.modalSwitchOtherWay);
   $('.col-2').on('click', gameEvents.addLetter);
   $('.restart').on('click', gameEvents.restartGame);
   $('.sign-up').on('submit', authEvents.onSignUp);
@@ -16846,7 +16869,7 @@ $(function () {
     $('.messaging').text('');
   });
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(29)))
 
 /***/ }),
 /* 342 */
@@ -16855,7 +16878,50 @@ $(function () {
 "use strict";
 
 
-var addNestedValue = __webpack_require__(343);
+var getFormFields = __webpack_require__(343);
+var api = __webpack_require__(345);
+var ui = __webpack_require__(133);
+
+var onSignUp = function onSignUp(event) {
+  event.preventDefault();
+  var form = event.target;
+  var formData = getFormFields(form);
+  api.signUp(formData).then(ui.signUpSuccess).catch(ui.signUpFailure);
+};
+
+var onSignIn = function onSignIn(event) {
+  event.preventDefault();
+  var form = event.target;
+  var formData = getFormFields(form);
+  api.signIn(formData).then(ui.signInSuccess).catch(ui.signInFailure);
+};
+
+var onSignOut = function onSignOut(event) {
+  api.signOut().then(ui.signOutSuccess).catch(ui.signOutFailure);
+};
+
+var onChangePassword = function onChangePassword(event) {
+  event.preventDefault();
+  var form = event.target;
+  var formData = getFormFields(form);
+  api.changePassword(formData).then(ui.changePasswordSuccess).catch(ui.changePasswordFailure);
+};
+
+module.exports = {
+  onSignUp: onSignUp,
+  onSignIn: onSignIn,
+  onSignOut: onSignOut,
+  onChangePassword: onChangePassword
+};
+
+/***/ }),
+/* 343 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var addNestedValue = __webpack_require__(344);
 
 var getFormFields = function getFormFields(form) {
   var target = {};
@@ -16896,7 +16962,7 @@ var getFormFields = function getFormFields(form) {
 module.exports = getFormFields;
 
 /***/ }),
-/* 343 */
+/* 344 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16931,13 +16997,13 @@ var addNestedValue = function addNestedValue(pojo, name, value) {
 module.exports = addNestedValue;
 
 /***/ }),
-/* 344 */
+/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function($) {
 
-var config = __webpack_require__(133);
+var config = __webpack_require__(132);
 var store = __webpack_require__(53);
 
 var signUp = function signUp(data) {
@@ -16984,73 +17050,7 @@ module.exports = {
   signOut: signOut,
   changePassword: changePassword
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
-
-/***/ }),
-/* 345 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function($) {
-
-var store = __webpack_require__(53);
-var gameEvents = __webpack_require__(134);
-var events = __webpack_require__(132);
-
-var signUpSuccess = function signUpSuccess() {
-  $('.messaging').text('You have successfully signed up! You will be redirected to sign in now.').css('color', 'green');
-  setTimeout(events.modalSwitch, 3000);
-};
-
-var signUpFailure = function signUpFailure() {
-  $('.messaging').text('Sign-up failed. Try again with a different e-mail!').css('color', 'red');
-};
-
-var signInSuccess = function signInSuccess(data) {
-  store.user = data.user;
-  $('.messaging').text('').css('color', 'green');
-  $('.authenticated').show();
-  $('.unauthenticated').hide();
-  $('#sign-in-modal').modal('hide');
-  gameEvents.onCreate();
-  $('.current-user').text('Welcome, ' + data.user.email + '!');
-};
-
-var signInFailure = function signInFailure() {
-  $('.messaging').text('Your sign-in has failed. Try again!').css('color', 'red');
-};
-
-var signOutSuccess = function signOutSuccess() {
-  store.user = null;
-  $('.unauthenticated').show();
-  $('.authenticated').hide();
-  $('.current-user').text('');
-  $('.game-status').html('<p class="card-text unauthenticated">Log in to begin!</p><p class="card-text authenticated">Start the game by clicking on one of the spaces.</p>');
-};
-
-var signOutFailure = function signOutFailure() {
-  $('<p class="card-text">Sign-out has failed. Please try again or reload the page.</p>').appendTo('.card-text:last').css('color', 'red');
-};
-
-var changePasswordSuccess = function changePasswordSuccess() {
-  $('.messaging').text('Password change successful!').css('color', 'green');
-};
-
-var changePasswordFailure = function changePasswordFailure() {
-  $('.messaging').text('Password change failed!').css('color', 'red');
-};
-
-module.exports = {
-  signUpSuccess: signUpSuccess,
-  signUpFailure: signUpFailure,
-  signInSuccess: signInSuccess,
-  signInFailure: signInFailure,
-  signOutSuccess: signOutSuccess,
-  signOutFailure: signOutFailure,
-  changePasswordSuccess: changePasswordSuccess,
-  changePasswordFailure: changePasswordFailure
-};
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(29)))
 
 /***/ }),
 /* 346 */
@@ -17059,7 +17059,7 @@ module.exports = {
 "use strict";
 /* WEBPACK VAR INJECTION */(function($) {
 
-var config = __webpack_require__(133);
+var config = __webpack_require__(132);
 var store = __webpack_require__(53);
 
 var getFinishedGames = function getFinishedGames() {
@@ -17106,7 +17106,7 @@ module.exports = {
   update: update,
   getFinishedGames: getFinishedGames
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(29)))
 
 /***/ }),
 /* 347 */
@@ -17176,7 +17176,7 @@ module.exports = {
   successfullyGotGames: successfullyGotGames,
   failedGettingGames: failedGettingGames
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(29)))
 
 /***/ }),
 /* 348 */
