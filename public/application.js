@@ -3990,8 +3990,13 @@ var store = __webpack_require__(53);
 var addLetter = function addLetter(event) {
   var game = func.currGame;
   var index = $(event.target).data('id');
-  if ($(event.target).text() === '' && store.user !== null && store.user !== undefined && func.currGame.isOver() !== true) {
-    api.update(index, game.currPlayer, game.isOver()).then(ui.updateSuccess(event)).catch(ui.updateFailure);
+  var gameOver = game.isOver();
+  console.log('gameOver is', gameOver);
+  if ($(event.target).text() === '' && store.user !== null && store.user !== undefined && gameOver === false) {
+    game.tray[index] = game.currPlayer;
+    api.update(index, game.currPlayer, game.isOver()).then(function () {
+      ui.updateSuccess(event);
+    }).catch(ui.updateFailure);
   }
 };
 
@@ -17064,7 +17069,7 @@ var store = __webpack_require__(53);
 
 var getFinishedGames = function getFinishedGames() {
   return $.ajax({
-    url: config.apiUrl + 'games/?over=true',
+    url: config.apiUrl + 'games?over=true',
     headers: {
       Authorization: 'Token token=' + store.user.token
     }
@@ -17130,7 +17135,7 @@ var updateSuccess = function updateSuccess(event) {
   var game = func.currGame;
   var index = $(event.target).data('id');
   $(event.target).text(game.currPlayer);
-  func.currGame.tray[index] = game.currPlayer;
+  // func.currGame.tray[index] = game.currPlayer
   if ($('.card-text.authenticated').text() === 'Start the game by clicking on one of the spaces.' || $('.card-text.authenticated').text() === 'Start the game by clicking on one of the spaces.') {
     $('.card-text').text('Player ' + game.currPlayer + ' played in space ' + (index + 1));
   } else {
@@ -17156,6 +17161,7 @@ var updateFailure = function updateFailure() {
 };
 
 var successfullyGotGames = function successfullyGotGames(data) {
+  console.log('Data is: ', data);
   var statsArray = func.calcStats(data);
   var total = statsArray[0] + statsArray[1] + statsArray[2];
   $('.total-games').text('' + total);
