@@ -29,7 +29,7 @@ GameBoard.prototype.isOver = function () {
   }
 }
 
-let currGame = new GameBoard(['', '', '', '', '', '', '', '', ''], 'x', false)
+let currGame = new GameBoard(['', '', '', '', '', '', '', '', ''], 'X', false)
 
 module.exports = {
   GameBoard,

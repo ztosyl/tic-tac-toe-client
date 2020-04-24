@@ -15,19 +15,25 @@ const addLetter = function (event) {
     api.update(index, game.currPlayer, over)
       .then(ui.updateSuccess)
       .catch(ui.updateFailure)
+    if ($('.card-text').text() === 'Start the game by clicking on one of the spaces.') {
+      $('.card-text').text(`Player ${game.currPlayer} played in space ${index + 1}`)
+    } else {
+      $(`<p class="card-text">Player ${game.currPlayer} played in space ${index + 1}</p>`).appendTo('.card-text:last')
+    }
     if (over) {
       if (game.isDraw) {
-        $('.who-won').text('You tied!')
+        $(`<p class="card-text">You tied! Click below to start a new game.</p>`).appendTo('.card-text:last')
       } else {
-        $('.who-won').text(`Player ${game.currPlayer} won!`)
+        $(`<p class="card-text">Player ${game.currPlayer} won! Click below to start a new game.</p>`).appendTo('.card-text:last')
       }
-    } else if (game.currPlayer === 'x') {
-      game.currPlayer = 'o'
+    } else if (game.currPlayer === 'X') {
+      game.currPlayer = 'O'
+      $(`<p class="card-text">It is now player ${game.currPlayer}'s turn.</p>`).appendTo('.card-text:last')
     } else {
-      game.currPlayer = 'x'
+      game.currPlayer = 'X'
+      $(`<p class="card-text">It is now player ${game.currPlayer}'s turn.</p>`).appendTo('.card-text:last')
     }
   }
-  console.log(game.currPlayer)
 }
 
 const onCreate = function () {
@@ -37,9 +43,9 @@ const onCreate = function () {
 }
 
 const restartGame = function (event) {
-  func.currGame = new func.GameBoard(['', '', '', '', '', '', '', '', ''], 'x', false)
+  func.currGame = new func.GameBoard(['', '', '', '', '', '', '', '', ''], 'X', false)
   $('.col-2').text('')
-  $('.who-won').text('')
+  $('.card-text').text('Start the game by clicking on one of the spaces.')
   event.preventDefault()
   onCreate()
 }

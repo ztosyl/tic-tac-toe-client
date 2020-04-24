@@ -1,6 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
 @import './variables';
 
+body {
+  background-color: $light-accent-color;
+}
+
 .right-bottom {
   border-bottom: $border-style;
   border-right: $border-style;
@@ -57,7 +61,7 @@ li > a {
   color: $font-color;
 
   &:hover {
-    color: #DCDDEE;
+    color: $light-accent-color;
   }
 }
 
@@ -74,7 +78,8 @@ p {
 }
 
 .card {
-  margin: 40px;
+  margin-left: 40px;
+  box-shadow: $shadow;
 }
 
 .btn-success {
@@ -95,4 +100,8 @@ p {
 
 input {
   font-family: $main-font;
+}
+
+.game-status {
+  color: $card-text-font-color;
 }
