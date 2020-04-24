@@ -7,31 +7,10 @@ const store = require('../store')
 const addLetter = function (event) {
   const game = func.currGame
   const index = $(event.target).data('id')
-  if (($(event.target).text() === '') && (store.user !== null) && (store.user !== undefined)) {
-    $(event.target).text(game.currPlayer)
-    func.currGame.tray[index] = game.currPlayer
-    const over = game.isOver()
-    api.update(index, game.currPlayer, over)
-      .then(ui.updateSuccess)
+  if (($(event.target).text() === '') && (store.user !== null) && (store.user !== undefined) && (func.currGame.isOver() !== true)) {
+    api.update(index, game.currPlayer, game.isOver())
+      .then(ui.updateSuccess(event))
       .catch(ui.updateFailure)
-    if ($('.card-text').text() === 'Start the game by clicking on one of the spaces.') {
-      $('.card-text').text(`Player ${game.currPlayer} played in space ${index + 1}`)
-    } else {
-      $(`<p class="card-text">Player ${game.currPlayer} played in space ${index + 1}</p>`).appendTo('.card-text:last')
-    }
-    if (over) {
-      if (game.isDraw) {
-        $(`<p class="card-text">You tied! Click below to start a new game.</p>`).appendTo('.card-text:last')
-      } else {
-        $(`<p class="card-text">Player ${game.currPlayer} won! Click below to start a new game.</p>`).appendTo('.card-text:last')
-      }
-    } else if (game.currPlayer === 'X') {
-      game.currPlayer = 'O'
-      $(`<p class="card-text">It is now player ${game.currPlayer}'s turn.</p>`).appendTo('.card-text:last')
-    } else {
-      game.currPlayer = 'X'
-      $(`<p class="card-text">It is now player ${game.currPlayer}'s turn.</p>`).appendTo('.card-text:last')
-    }
   }
 }
 
@@ -48,8 +27,15 @@ const restartGame = function (event) {
   onCreate()
 }
 
+const onStats = function () {
+  api.getFinishedGames()
+    .then(ui.successfullyGotGames)
+    .catch(ui.failedGettingGames)
+}
+
 module.exports = {
   addLetter,
   restartGame,
-  onCreate
+  onCreate,
+  onStats
 }

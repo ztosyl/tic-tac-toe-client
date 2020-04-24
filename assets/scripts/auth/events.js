@@ -35,9 +35,23 @@ const onChangePassword = function (event) {
     .catch(ui.changePasswordFailure)
 }
 
+const modalSwitch = function () {
+  $('#sign-up-modal').modal('hide')
+  $('#sign-in-modal').modal('show')
+  $('.messaging').text('')
+}
+
+const modalSwitchOtherWay = function () {
+  $('#sign-in-modal').modal('hide')
+  $('#sign-up-modal').modal('show')
+  $('.messaging').text('')
+}
+
 module.exports = {
   onSignUp,
   onSignIn,
   onSignOut,
-  onChangePassword
+  onChangePassword,
+  modalSwitch,
+  modalSwitchOtherWay
 }

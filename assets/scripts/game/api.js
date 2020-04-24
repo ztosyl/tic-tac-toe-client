@@ -1,14 +1,14 @@
 const config = require('../config')
 const store = require('../store')
 
-// const getCurrent = function () {
-//   return $.ajax({
-//     url: config.apiUrl + 'games/?over=false',
-//     headers: {
-//       Authorization: 'Token token=' + store.user.token
-//     }
-//   })
-// }
+const getFinishedGames = function () {
+  return $.ajax({
+    url: config.apiUrl + 'games/?over=true',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
 
 const create = function () {
   return $.ajax({
@@ -42,6 +42,6 @@ const update = function (index, currPlayer, isOver) {
 
 module.exports = {
   create,
-  update
-  // getCurrent
+  update,
+  getFinishedGames
 }

@@ -18,10 +18,6 @@ body {
   border-right: $border-style;
 }
 
-.row > div {
-  height: 100px;
-}
-
 .authenticated {
   display: none;
 }
@@ -66,7 +62,11 @@ li > a {
 }
 
 p {
-  font-family: $main-font
+  font-family: $main-font;
+}
+
+.row > div:not(.messaging) {
+  height: 150px;
 }
 
 .row {
@@ -77,33 +77,63 @@ p {
   z-index: 1;
 }
 
+.col-2 {
+  color: $accent-color;
+  font-family: $main-font;
+  font-size: 90px;
+  font-weight: bold;
+  text-align: center;
+}
+
 .col-12 {
   padding: 5px;
+}
+
+.messaging {
+  height: 10px;
+  text-align: center;
+}
+
+.intro-font {
+  color: $accent-color;
+  font-variant: small-caps;
+  font-weight: bold;
 }
 
 .restart {
   z-index: 2;
 }
 
-.card {
-  margin-left: 40px;
-  box-shadow: $shadow;
+a:not([href]) {
+  color: $faux-link-color;
+  cursor: pointer;
+
+  &:hover {
+    color: $faux-link-color;
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }
 
-.btn-success {
-  margin: 0 auto;
+.card {
+  box-shadow: $shadow;
+  margin-left: 40px;
+}
+
+.btn {
   font-family: $main-font;
 }
 
 .btn-primary {
   margin: 30px;
-  padding: 5px;
-  font-family: $main-font;
 }
 
 .btn-button {
   margin: 25px;
-  font-family: $main-font;
+}
+
+.close-modal {
+  float: right;
 }
 
 input {
