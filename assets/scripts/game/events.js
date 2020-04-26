@@ -18,10 +18,11 @@ const addLetter = function (event) {
         .catch(ui.updateFailure)
     } else if (game.magicNumbers.indexOf(index) === 0) {
       game.tray[index] = game.currPlayer
-      api.update(index, game.currPlayer, game.isOver())
+      api.update(index, game.currPlayer, true)
         .then(() => {
-          ui.updateSuccess(event)
+          ui.updateSuccessExploder(event)
         })
+        .catch(ui.updateFailure)
       console.log('You hit the exploding space!')
     } else {
       game.tray[index] = game.currPlayer
@@ -29,6 +30,7 @@ const addLetter = function (event) {
         .then(() => {
           ui.updateSuccess(event)
         })
+        .catch(ui.updateFailure)
       console.log('You hit the switch space!')
     }
   }

@@ -3,6 +3,7 @@ function GameBoard () {
   this.currPlayer = 'X'
   this.isDraw = false
   this.magicNumbers = []
+  this.isExploderPressed = false
 }
 
 GameBoard.prototype.chooseMagicNumbers = function () {
@@ -34,6 +35,8 @@ GameBoard.prototype.isOver = function () {
     return true
   } else if (this.tray.indexOf('') === -1) {
     this.isDraw = true
+    return true
+  } else if (this.isExploderPressed === true) {
     return true
   } else {
     return false
