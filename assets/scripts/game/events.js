@@ -17,12 +17,21 @@ const addLetter = function (event) {
         })
         .catch(ui.updateFailure)
     } else if (game.magicNumbers.indexOf(index) === 0) {
-      game.tray[index] = game.currPlayer
-      api.update(index, game.currPlayer, true)
-        .then(() => {
-          ui.updateSuccessExploder(event)
-        })
-        .catch(ui.updateFailure)
+      if (game.currPlayer === 'X') {
+        game.tray[index] = 'A'
+        api.update(index, 'A', true)
+          .then(() => {
+            ui.updateSuccessExploder(event)
+          })
+          .catch(ui.updateFailure)
+      } else {
+        game.tray[index] = 'B'
+        api.update(index, 'B', true)
+          .then(() => {
+            ui.updateSuccessExploder(event)
+          })
+          .catch(ui.updateFailure)
+      }
       console.log('You hit the exploding space!')
     } else {
       game.tray[index] = game.currPlayer

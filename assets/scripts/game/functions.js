@@ -54,6 +54,11 @@ GameBoard.prototype.switch = function () {
 }
 
 const whoWon = function (tray) {
+  if (tray.indexOf('A') !== -1) {
+    return 'O'
+  } else if (tray.indexOf('B') !== -1) {
+    return 'X'
+  }
   if (tray[0] !== '' && tray[0] === tray[1] && tray[0] === tray[2]) {
     return tray[0]
   } else if (tray[3] !== '' && tray[3] === tray[4] && tray[3] === tray[5]) {
@@ -75,7 +80,7 @@ const whoWon = function (tray) {
   }
 }
 
-const calcStats = function (data) {
+const calcStats = function (data, whoPressedExploder) {
   const total = []
   const winsLossesTies = []
   let xWins = 0
