@@ -1,7 +1,7 @@
-function GameBoard (tray, currPlayer, isDraw) {
-  this.tray = tray
-  this.currPlayer = currPlayer
-  this.isDraw = isDraw
+function GameBoard () {
+  this.tray = ['', '', '', '', '', '', '', '', '']
+  this.currPlayer = 'X'
+  this.isDraw = false
   this.magicNumbers = []
 }
 
@@ -37,6 +37,16 @@ GameBoard.prototype.isOver = function () {
     return true
   } else {
     return false
+  }
+}
+
+GameBoard.prototype.switch = function () {
+  for (let i = 0; i < this.tray.length; i++) {
+    if (this.tray[i] === 'X') {
+      this.tray[i] = 'O'
+    } else if (this.tray[i] === 'O') {
+      this.tray[i] = 'X'
+    }
   }
 }
 

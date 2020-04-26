@@ -6,14 +6,13 @@ const createGameSuccess = function (data) {
 }
 
 const createGameFailure = function () {
-  $(`<p class="card-text">Game could not be created. Please try again."</p>`).appendTo('.card-text:last').css('color', 'red')
+  $(`<p class="card-text">Game could not be created. Please try again.</p>`).appendTo('.card-text:last').css('color', 'red')
 }
 
 const updateSuccess = function (event) {
   const game = func.currGame
   const index = $(event.target).data('id')
   $(event.target).text(game.currPlayer)
-  // func.currGame.tray[index] = game.currPlayer
   if (($('.card-text.authenticated').text() === 'Start the game by clicking on one of the spaces.') || ($('.card-text.authenticated').text() === 'Start the game by clicking on one of the spaces.')) {
     $('.card-text').text(`Player ${game.currPlayer} played in space ${index + 1}`)
   } else {

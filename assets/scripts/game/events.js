@@ -8,14 +8,29 @@ const addLetter = function (event) {
   const game = func.currGame
   const index = $(event.target).data('id')
   const gameOver = game.isOver()
-  console.log('gameOver is', gameOver)
   if (($(event.target).text() === '') && (store.user !== null) && (store.user !== undefined) && (gameOver === false)) {
-    game.tray[index] = game.currPlayer
-    api.update(index, game.currPlayer, game.isOver())
-      .then(() => {
-        ui.updateSuccess(event)
-      })
-      .catch(ui.updateFailure)
+    if (game.magicNumbers.indexOf(index) === -1) {
+      game.tray[index] = game.currPlayer
+      api.update(index, game.currPlayer, game.isOver())
+        .then(() => {
+          ui.updateSuccess(event)
+        })
+        .catch(ui.updateFailure)
+    } else if (game.magicNumbers.indexOf(index) === 0) {
+      game.tray[index] = game.currPlayer
+      api.update(index, game.currPlayer, game.isOver())
+        .then(() => {
+          ui.updateSuccess(event)
+        })
+      console.log('You hit the exploding space!')
+    } else {
+      game.tray[index] = game.currPlayer
+      api.update(index, game.currPlayer, game.isOver())
+        .then(() => {
+          ui.updateSuccess(event)
+        })
+      console.log('You hit the switch space!')
+    }
   }
 }
 
@@ -26,7 +41,7 @@ const onCreate = function () {
 }
 
 const restartGame = function (event) {
-  func.currGame = new func.GameBoard(['', '', '', '', '', '', '', '', ''], 'X', false)
+  func.currGame = new func.GameBoard()
   func.currGame.chooseMagicNumbers()
   $('.col-2').text('')
   $('.game-status').html('<p class="card-text">Start the game by clicking on one of the spaces.</p>')
