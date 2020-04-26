@@ -52,13 +52,11 @@ const updateFailure = function () {
 }
 
 const successfullyGotGames = function (data) {
-  console.log('Data is: ', data)
   const statsArray = func.calcStats(data)
-  const total = (statsArray[0] + statsArray[1] + statsArray[2])
+  const total = (statsArray[0] + statsArray[1])
   $('.total-games').text(`${total}`)
   $('.games-won').text(`${statsArray[0]}`)
   $('.games-lost').text(`${statsArray[1]}`)
-  $('.games-tied').text(`${statsArray[2]}`)
 }
 
 const failedGettingGames = function () {

@@ -55,7 +55,7 @@ const restartGame = function (event) {
   func.currGame = new func.GameBoard()
   func.currGame.chooseMagicNumbers()
   $('.col-2').text('')
-  $('.game-status').html('<p class="card-text">Start the game by clicking on one of the spaces.</p>')
+  $('.game-status').html(`<p class="card-text">Start the game by clicking on one of the spaces.</p>`)
   onCreate()
 }
 

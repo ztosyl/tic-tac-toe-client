@@ -82,10 +82,9 @@ const whoWon = function (tray) {
 
 const calcStats = function (data, whoPressedExploder) {
   const total = []
-  const winsLossesTies = []
+  const winsLosses = []
   let xWins = 0
   let xLosses = 0
-  let ties = 0
   for (let i = 0; i < data.games.length; i++) {
     total.push(whoWon(data.games[i].cells))
   }
@@ -94,14 +93,11 @@ const calcStats = function (data, whoPressedExploder) {
       xWins += 1
     } else if (total[i] === 'O') {
       xLosses += 1
-    } else {
-      ties += 1
     }
   }
-  winsLossesTies[0] = xWins
-  winsLossesTies[1] = xLosses
-  winsLossesTies[2] = ties
-  return winsLossesTies
+  winsLosses[0] = xWins
+  winsLosses[1] = xLosses
+  return winsLosses
 }
 
 let currGame = new GameBoard(['', '', '', '', '', '', '', '', ''], 'X', false)

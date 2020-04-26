@@ -5,6 +5,22 @@ body {
   background-color: $light-accent-color;
 }
 
+p {
+  color: $accent-color
+}
+
+.magic {
+  font-weight: bold;
+}
+
+.switch {
+  color: green;
+}
+
+.exploding {
+  color: red;
+}
+
 .right-bottom {
   border-bottom: $border-style;
   border-right: $border-style;
@@ -141,5 +157,5 @@ input {
 }
 
 .card-text {
-  color: $card-text-font-color;
+  color: black;
 }

@@ -61,6 +61,30 @@
 </div>
 </div>
 
+
+<div class="modal fade container" id="instructions-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Instructions</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Welcome to tic tac toe! In order to win, you must get three of your letter (either X or O) in the same space. Click on a space to claim it for you letter. X goes first, and then O goes and does the same. Proceed like this until the game is over.</p>
+      <p>However! This version has <span class="magic">MAGIC SPACES</span>: the <span class=" magic exploding">Exploding</span> space and the <span class="magic switch">Switch</span> space. Place your letter on the <span class="magic exploding">Exploding</span> space and you instantly lose! Place your letter on the <span class="magic switch">Switch</span> space and all Xs and Os on the board switch spaces!</p>
+      <p>There are no ties. If it looks like you are about to tie, both players must keep choosing until one chooses the <span class=" magic exploding">Exploding</span> space.
+      <p>Good luck! Click on the board to make the first move and begin the game, or click on 'Restart Game' to start a new one.
+    </div>
+    <div class="modal-footer">
+    <div class="col-12"><button class="btn btn-danger right-button close-modal" data-toggle="modal" data-dismiss="modal">Close</button></div>
+    </div>
+  </div>
+</div>
+</div>
+
+
 <div class="modal fade container" id="change-password-modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 <div class="modal-dialog" role="document">
 <div class="modal-content">
@@ -98,7 +122,7 @@
         <p><span class="intro-font">Games Played:</span> <span class="total-games">0</span></p>
         <p><span class="intro-font">X Wins:</span> <span class="games-won">0</span></p>
         <p><span class="intro-font">O Wins:</span> <span class="games-lost">0</span></p>
-        <p><span class="intro-font">Games Tied:</span> <span class="games-tied">0</span></p>
+        <!-- <p><span class="intro-font">Games Tied:</span> <span class="games-tied">0</span></p> -->
         <p class='messaging'></p>
     </div>
     <div class="modal-footer">
@@ -112,6 +136,9 @@
   <h1>Tic Tac Toe</h1>
       <div class="authenticated">
       <ul class="nav justify-content-end">
+  <li class="nav-item mr-sm-2">
+    <a class="nav-link" href="#instructions-modal" data-toggle="modal" data-target="#instructions-modal">Instructions</a>
+  </li>
   <li class="nav-item mr-sm-2">
     <a class="nav-link" href="#change-password-modal" data-toggle="modal" data-target="#change-password-modal">Change Password</a>
   </li>
