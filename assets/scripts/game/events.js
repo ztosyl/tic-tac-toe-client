@@ -12,7 +12,9 @@ const addLetter = function (event) {
   if (($(event.target).text() === '') && (store.user !== null) && (store.user !== undefined) && (gameOver === false)) {
     game.tray[index] = game.currPlayer
     api.update(index, game.currPlayer, game.isOver())
-      .then(() => { ui.updateSuccess(event)} )
+      .then(() => {
+        ui.updateSuccess(event)
+      })
       .catch(ui.updateFailure)
   }
 }
@@ -25,6 +27,7 @@ const onCreate = function () {
 
 const restartGame = function (event) {
   func.currGame = new func.GameBoard(['', '', '', '', '', '', '', '', ''], 'X', false)
+  func.currGame.chooseMagicNumbers()
   $('.col-2').text('')
   $('.game-status').html('<p class="card-text">Start the game by clicking on one of the spaces.</p>')
   onCreate()

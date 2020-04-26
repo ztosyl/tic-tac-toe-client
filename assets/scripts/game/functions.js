@@ -2,6 +2,17 @@ function GameBoard (tray, currPlayer, isDraw) {
   this.tray = tray
   this.currPlayer = currPlayer
   this.isDraw = isDraw
+  this.magicNumbers = []
+}
+
+GameBoard.prototype.chooseMagicNumbers = function () {
+  this.magicNumbers = []
+  while (this.magicNumbers.length < 2) {
+    const magic = Math.floor(Math.random() * 8)
+    if (this.magicNumbers.indexOf(magic) === -1) {
+      this.magicNumbers.push(magic)
+    }
+  }
 }
 
 GameBoard.prototype.isOver = function () {
@@ -76,6 +87,7 @@ const calcStats = function (data) {
 }
 
 let currGame = new GameBoard(['', '', '', '', '', '', '', '', ''], 'X', false)
+currGame.chooseMagicNumbers()
 
 module.exports = {
   GameBoard,
