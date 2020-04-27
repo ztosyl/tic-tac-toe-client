@@ -4,10 +4,30 @@ const api = require('./api')
 const ui = require('./ui')
 const store = require('../store')
 
+const updateAll = function (game) {
+  for (let i = 0; i < game.tray.length; i++) {
+    const over = game.isOver()
+    if (game.tray[i] === 'X') {
+      api.update(i, 'O', over)
+        .then(() => {
+          ui.updateAllSuccess(i)
+        })
+        .catch(ui.updateFailure)
+    } else if (game.tray[i] === 'O') {
+      api.update(i, 'X', over)
+        .then(() => {
+          ui.updateAllSuccess(i)
+        })
+        .catch(ui.updateFailure)
+    }
+  }
+}
+
 const addLetter = function (event) {
   const game = func.currGame
   const index = $(event.target).data('id')
   const gameOver = game.isOver()
+  console.log(game.magicNumbers)
   if (($(event.target).text() === '') && (store.user !== null) && (store.user !== undefined) && (gameOver === false)) {
     if (game.magicNumbers.indexOf(index) === -1) {
       game.tray[index] = game.currPlayer
@@ -32,12 +52,12 @@ const addLetter = function (event) {
           })
           .catch(ui.updateFailure)
       }
-      console.log('You hit the exploding space!')
     } else {
-      game.tray[index] = game.currPlayer
+      updateAll(game)
+      game.switch()
       api.update(index, game.currPlayer, game.isOver())
         .then(() => {
-          ui.updateSuccess(event)
+          ui.finalUpdateSuccess(event)
         })
         .catch(ui.updateFailure)
       console.log('You hit the switch space!')

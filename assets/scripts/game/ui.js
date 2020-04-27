@@ -9,6 +9,43 @@ const createGameFailure = function () {
   $(`<p class="card-text">Game could not be created. Please try again.</p>`).appendTo('.card-text:last').css('color', 'red')
 }
 
+const finalUpdateSuccess = function (event) {
+  const game = func.currGame
+  const index = $(event.target).data('id')
+  $(event.target).text(game.currPlayer)
+  if (($('.card-text.authenticated').text() === 'Start the game by clicking on one of the spaces.') || ($('.card-text.authenticated').text() === 'Start the game by clicking on one of the spaces.')) {
+  //  $('.card-text').text(`Player ${game.currPlayer} played in space ${index + 1}`)
+  } else {
+    // $(`<p class="card-text">Player ${game.currPlayer} played in space ${index + 1}</p>`).appendTo('.card-text:last')
+  }
+  // ($`<p class="card-text">Space ${index + 1} was the switch space! All Xs and Os have switched places.</p>`).appendTo('.card-text:last')
+  if (game.isOver()) {
+    if (func.whoWon(game.tray) === 'X') {
+      // $(`<p class="card-text">Player X won! Click below to start a new game.</p>`).appendTo('.card-text:last')
+    } else if (func.whoWon(game.tray) === 'O') {
+      // $(`<p class="card-text">Player O won! Click below to start a new game.</p>`).appendTo('.card-text:last')
+    }
+  } else if (game.currPlayer === 'X') {
+    game.currPlayer = 'O'
+    // $(`<p class="card-text">It is now player ${game.currPlayer}'s turn.</p>`).appendTo('.card-text:last')
+  } else {
+    game.currPlayer = 'X'
+    // $(`<p class="card-text">It is now player ${game.currPlayer}'s turn.</p>`).appendTo('.card-text:last')
+  }
+}
+
+const updateAllSuccess = function (index) {
+  console.log('update all success!')
+  const currDiv = `div[data-id=${index}]`
+  if ($(currDiv).text() === 'X') {
+    console.log('if text is X')
+    $(currDiv).text('O')
+  } else if ($(currDiv).text() === 'O') {
+    console.log('if text is O')
+    $(currDiv).text('X')
+  }
+}
+
 const updateSuccess = function (event) {
   const game = func.currGame
   const index = $(event.target).data('id')
@@ -19,11 +56,7 @@ const updateSuccess = function (event) {
     $(`<p class="card-text">Player ${game.currPlayer} played in space ${index + 1}</p>`).appendTo('.card-text:last')
   }
   if (game.isOver()) {
-    if (game.isDraw) {
-      $(`<p class="card-text">You tied! Click below to start a new game.</p>`).appendTo('.card-text:last')
-    } else {
-      $(`<p class="card-text">Player ${game.currPlayer} won! Click below to start a new game.</p>`).appendTo('.card-text:last')
-    }
+    $(`<p class="card-text">Player ${game.currPlayer} won! Click below to start a new game.</p>`).appendTo('.card-text:last')
   } else if (game.currPlayer === 'X') {
     game.currPlayer = 'O'
     $(`<p class="card-text">It is now player ${game.currPlayer}'s turn.</p>`).appendTo('.card-text:last')
@@ -70,5 +103,7 @@ module.exports = {
   updateFailure,
   successfullyGotGames,
   failedGettingGames,
-  updateSuccessExploder
+  updateSuccessExploder,
+  finalUpdateSuccess,
+  updateAllSuccess
 }
