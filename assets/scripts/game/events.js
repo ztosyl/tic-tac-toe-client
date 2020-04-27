@@ -4,7 +4,7 @@ const api = require('./api')
 const ui = require('./ui')
 const store = require('../store')
 
-const updateAll = function (game) {
+const updateAll = async function (game) {
   for (let i = 0; i < game.tray.length; i++) {
     const over = game.isOver()
     if (game.tray[i] === 'X') {
@@ -53,14 +53,16 @@ const addLetter = function (event) {
           .catch(ui.updateFailure)
       }
     } else {
-      updateAll(game)
-      game.switch()
-      game.tray[index] = game.currPlayer
-      api.update(index, game.currPlayer, game.isOver())
-        .then(() => {
-          ui.finalUpdateSuccess(event)
-        })
-        .catch(ui.updateFailure)
+      updateAll(game).then(() => {
+        game.switch()
+        game.tray[index] = game.currPlayer
+        const over = game.isOver()
+        api.update(index, game.currPlayer, over)
+          .then(() => {
+            ui.finalUpdateSuccess(event)
+          })
+          .catch(ui.updateFailure)
+      })
     }
   }
 }

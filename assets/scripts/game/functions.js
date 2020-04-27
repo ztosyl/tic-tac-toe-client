@@ -80,7 +80,7 @@ const whoWon = function (tray) {
   }
 }
 
-const calcStats = function (data, whoPressedExploder) {
+const calcStats = function (data) {
   const total = []
   const winsLosses = []
   let xWins = 0
