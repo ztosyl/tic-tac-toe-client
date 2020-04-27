@@ -36,6 +36,7 @@ const addLetter = function (event) {
         })
         .catch(ui.updateFailure)
     } else if (game.magicNumbers.indexOf(index) === 0) {
+      $('#explosion')[0].play()
       if (game.currPlayer === 'X') {
         game.tray[index] = 'A'
         api.update(index, 'A', true)
@@ -52,6 +53,7 @@ const addLetter = function (event) {
           .catch(ui.updateFailure)
       }
     } else {
+      $('#switch')[0].play()
       updateAll(game).then(() => {
         game.switch()
         game.tray[index] = game.currPlayer
