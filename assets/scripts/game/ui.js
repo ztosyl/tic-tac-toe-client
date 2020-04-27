@@ -14,23 +14,23 @@ const finalUpdateSuccess = function (event) {
   const index = $(event.target).data('id')
   $(event.target).text(game.currPlayer)
   if (($('.card-text.authenticated').text() === 'Start the game by clicking on one of the spaces.') || ($('.card-text.authenticated').text() === 'Start the game by clicking on one of the spaces.')) {
-  //  $('.card-text').text(`Player ${game.currPlayer} played in space ${index + 1}`)
+    $('.card-text').text(`Player ${game.currPlayer} played in space ${index + 1}`)
   } else {
-    // $(`<p class="card-text">Player ${game.currPlayer} played in space ${index + 1}</p>`).appendTo('.card-text:last')
+    $(`<p class="card-text">Player ${game.currPlayer} played in space ${index + 1}</p>`).appendTo('.card-text:last')
   }
-  // ($`<p class="card-text">Space ${index + 1} was the switch space! All Xs and Os have switched places.</p>`).appendTo('.card-text:last')
+  $(`<p class="card-text">Space ${index + 1} was the switch space! All Xs and Os have switched places.</p>`).appendTo('.card-text:last')
   if (game.isOver()) {
     if (func.whoWon(game.tray) === 'X') {
-      // $(`<p class="card-text">Player X won! Click below to start a new game.</p>`).appendTo('.card-text:last')
+      $(`<p class="card-text">Player X won! Click below to start a new game.</p>`).appendTo('.card-text:last')
     } else if (func.whoWon(game.tray) === 'O') {
-      // $(`<p class="card-text">Player O won! Click below to start a new game.</p>`).appendTo('.card-text:last')
+      $(`<p class="card-text">Player O won! Click below to start a new game.</p>`).appendTo('.card-text:last')
     }
   } else if (game.currPlayer === 'X') {
     game.currPlayer = 'O'
-    // $(`<p class="card-text">It is now player ${game.currPlayer}'s turn.</p>`).appendTo('.card-text:last')
+    $(`<p class="card-text">It is now player ${game.currPlayer}'s turn.</p>`).appendTo('.card-text:last')
   } else {
     game.currPlayer = 'X'
-    // $(`<p class="card-text">It is now player ${game.currPlayer}'s turn.</p>`).appendTo('.card-text:last')
+    $(`<p class="card-text">It is now player ${game.currPlayer}'s turn.</p>`).appendTo('.card-text:last')
   }
 }
 

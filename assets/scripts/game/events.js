@@ -55,12 +55,12 @@ const addLetter = function (event) {
     } else {
       updateAll(game)
       game.switch()
+      game.tray[index] = game.currPlayer
       api.update(index, game.currPlayer, game.isOver())
         .then(() => {
           ui.finalUpdateSuccess(event)
         })
         .catch(ui.updateFailure)
-      console.log('You hit the switch space!')
     }
   }
 }
