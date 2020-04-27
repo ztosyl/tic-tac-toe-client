@@ -13,7 +13,7 @@ const finalUpdateSuccess = function (event) {
   const game = func.currGame
   const index = $(event.target).data('id')
   $(event.target).text(game.currPlayer)
-  if (($('.card-text.authenticated').text() === 'Start the game by clicking on one of the spaces.') || ($('.card-text.authenticated').text() === 'Start the game by clicking on one of the spaces.')) {
+  if (($('.card-text.authenticated').text() === 'Start the game by clicking on one of the spaces.') || ($('.card-text').text() === 'Start the game by clicking on one of the spaces.')) {
     $('.card-text').text(`Player ${game.currPlayer} played in space ${index + 1}`)
   } else {
     $(`<p class="card-text">Player ${game.currPlayer} played in space ${index + 1}</p>`).appendTo('.card-text:last')
@@ -47,7 +47,7 @@ const updateSuccess = function (event) {
   const game = func.currGame
   const index = $(event.target).data('id')
   $(event.target).text(game.currPlayer)
-  if (($('.card-text.authenticated').text() === 'Start the game by clicking on one of the spaces.') || ($('.card-text.authenticated').text() === 'Start the game by clicking on one of the spaces.')) {
+  if (($('.card-text.authenticated').text() === 'Start the game by clicking on one of the spaces.') || ($('.card-text').text() === 'Start the game by clicking on one of the spaces.')) {
     $('.card-text').text(`Player ${game.currPlayer} played in space ${index + 1}`)
   } else {
     $(`<p class="card-text">Player ${game.currPlayer} played in space ${index + 1}</p>`).appendTo('.card-text:last')
@@ -67,7 +67,7 @@ const updateSuccessExploder = function (event) {
   const game = func.currGame
   const index = $(event.target).data('id')
   $(event.target).text(game.currPlayer)
-  if (($('.card-text.authenticated').text() === 'Start the game by clicking on one of the spaces.') || ($('.card-text.authenticated').text() === 'Start the game by clicking on one of the spaces.')) {
+  if (($('.card-text.authenticated').text() === 'Start the game by clicking on one of the spaces.') || ($('.card-text').text() === 'Start the game by clicking on one of the spaces.')) {
     $('.card-text').text(`Player ${game.currPlayer} played in space ${index + 1}`)
   } else {
     $(`<p class="card-text">Player ${game.currPlayer} played in space ${index + 1}</p>`).appendTo('.card-text:last')

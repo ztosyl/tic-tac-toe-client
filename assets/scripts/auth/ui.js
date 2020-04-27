@@ -15,17 +15,20 @@ const modalSwitchOtherWay = function () {
 }
 
 const signUpSuccess = function () {
+  $('.sign-up-input').val('')
   $('.messaging').text('Thanks! You will now be redirected to sign-in.').css('color', 'green')
   setTimeout(modalSwitch, 1000)
 }
 
 const signUpFailure = function () {
+  $('.sign-up-input').val('')
   $('.messaging').text('Sign-up failed. Try again with a different e-mail!').css('color', 'red')
 }
 
 const signInSuccess = function (data) {
+  $('.sign-in-input').val('')
   store.user = data.user
-  $('.messaging').text('').css('color', 'green')
+  $('.messaging').text('')
   $('.authenticated').show()
   $('.unauthenticated').hide()
   $('#sign-in-modal').modal('hide')
@@ -34,6 +37,8 @@ const signInSuccess = function (data) {
 }
 
 const signInFailure = function () {
+  $('.messaging').text('')
+  $('.sign-in-input').val('')
   $('.messaging').text('Your sign-in has failed. Try again!').css('color', 'red')
 }
 
@@ -50,10 +55,12 @@ const signOutFailure = function () {
 }
 
 const changePasswordSuccess = function () {
+  $('.change-password-input').val('')
   $('.messaging').text('Password change successful!').css('color', 'green')
 }
 
 const changePasswordFailure = function () {
+  $('.change-password-input').val('')
   $('.messaging').text('Password change failed!').css('color', 'red')
 }
 
