@@ -27,7 +27,6 @@ const addLetter = function (event) {
   const game = func.currGame
   const index = $(event.target).data('id')
   const gameOver = game.isOver()
-  console.log(game.magicNumbers)
   if (($(event.target).text() === '') && (store.user !== null) && (store.user !== undefined) && (gameOver === false)) {
     if (game.magicNumbers.indexOf(index) === -1) {
       game.tray[index] = game.currPlayer

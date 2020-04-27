@@ -7,6 +7,7 @@
       <!-- Do not add `link` tags-->
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
       <link href="https://fonts.googleapis.com/css2?family=Cabin&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet">
       <!-- Do not add `script` tags-->
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
@@ -72,10 +73,10 @@
       </button>
     </div>
     <div class="modal-body">
-      <p>Welcome to tic tac toe! In order to win, you must get three of your letter (either X or O) in the same space. Click on a space to claim it for you letter. X goes first, and then O goes and does the same. Proceed like this until the game is over.</p>
-      <p>However! This version has <span class="magic">MAGIC SPACES</span>: the <span class=" magic exploding">Exploding</span> space and the <span class="magic switch">Switch</span> space. Place your letter on the <span class="magic exploding">Exploding</span> space and you instantly lose! Place your letter on the <span class="magic switch">Switch</span> space and all Xs and Os on the board switch spaces!</p>
-      <p>There are no ties. If it looks like you are about to tie, both players must keep choosing until one chooses the <span class=" magic exploding">Exploding</span> space.
-      <p>Good luck! Click on the board to make the first move and begin the game, or click on 'Restart Game' to start a new one.
+      <p class="instructions">Welcome to <span class="magic trick">Trick-Tac-Toe</span>! In order to win, you must get three of your letter in a row. Click on a space to claim it for you letter. X goes first, and then O goes, and so on until the game is over.</p>
+      <p class="instructions">However, <span class="magic trick">Trick-Tac-Toe</span> has <span class="magic magic-color">MAGIC SPACES</span>: the <span class=" magic exploding">Exploding</span> space and the <span class="magic switch">Switch</span> space. Place your letter on the <span class="magic exploding">Exploding</span> space and you instantly lose! Place your letter on the <span class="magic switch">Switch</span> space and all Xs and Os on the board switch spaces!</p>
+      <p class="instructions">The <span class="magic switch">Switch</span> does not include the letter placed on the space, so the player who clicks it will still have their letter appear on the space. There are no ties in <span class="magic trick">Trick-Tac-Toe</span>. Both players must keep choosing until one chooses the <span class=" magic exploding">Exploding</span> space.
+      <p class="instructions">Good luck! Click on the board to make the first move and begin the game, or click on 'Restart Game' to start a new one.
     </div>
     <div class="modal-footer">
     <div class="col-12"><button class="btn btn-danger right-button close-modal" data-toggle="modal" data-dismiss="modal">Close</button></div>
@@ -133,7 +134,7 @@
 </div>
 
 <nav class="navbar navbar-light">
-  <h1>Tic Tac Toe</h1>
+  <h1>Trick-Tac-Toe</h1>
       <div class="authenticated">
       <ul class="nav justify-content-end">
   <li class="nav-item mr-sm-2">
@@ -160,6 +161,7 @@
 </ul>
 </div>
 </nav>
+<div>
 <h3 class="current-user"></h3>
       <div class="container board">
       <div class="row d-flex">
@@ -191,5 +193,6 @@
         <div class="col-4"></div>
       </div>
     </div>
+  </div>
     </body>
 </html>

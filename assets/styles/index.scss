@@ -6,19 +6,33 @@ body {
 }
 
 p {
-  color: $accent-color
+  color: $accent-color;
+  font-family: $main-font;
 }
 
 .magic {
   font-weight: bold;
 }
 
+.magic-color {
+  color: $accent-color;
+}
+
 .switch {
-  color: green;
+  color: $switch-color;
 }
 
 .exploding {
-  color: red;
+  color: $exploding-color;
+}
+
+.trick {
+  color: $accent-color;
+  font-variant: small-caps;
+}
+
+.instructions {
+  color: $card-text-font-color;
 }
 
 .right-bottom {
@@ -46,7 +60,7 @@ h5 {
 
 h1 {
   color: $font-color;
-  font-family: $main-font;
+  font-family: $heading-font;
   font-size: 50px;
   font-variant: small-caps;
   font-weight: bold;
@@ -54,6 +68,7 @@ h1 {
 
 h3 {
   color: $accent-color;
+  display: inline;
   font-family: $main-font;
   font-variant: small-caps;
   margin-left: 30px;
@@ -61,8 +76,8 @@ h3 {
 
 nav {
   background-color: $accent-color;
-  box-shadow: $shadow;
-  margin-bottom: 30px;
+  box-shadow: $header-shadow;
+  margin-bottom: 15px;
 }
 
 a {
@@ -75,10 +90,6 @@ li > a {
   &:hover {
     color: $light-accent-color;
   }
-}
-
-p {
-  font-family: $main-font;
 }
 
 .row > div:not(.messaging) {
@@ -157,5 +168,5 @@ input {
 }
 
 .card-text {
-  color: black;
+  color: $card-text-font-color;
 }

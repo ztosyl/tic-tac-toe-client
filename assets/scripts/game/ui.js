@@ -35,13 +35,10 @@ const finalUpdateSuccess = function (event) {
 }
 
 const updateAllSuccess = function (index) {
-  console.log('update all success!')
   const currDiv = `div[data-id=${index}]`
   if ($(currDiv).text() === 'X') {
-    console.log('if text is X')
     $(currDiv).text('O')
   } else if ($(currDiv).text() === 'O') {
-    console.log('if text is O')
     $(currDiv).text('X')
   }
 }
