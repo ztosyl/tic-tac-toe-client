@@ -64,6 +64,11 @@ const changePasswordFailure = function () {
   $('.messaging').text('Password change failed!').css('color', 'red')
 }
 
+const changePasswordFailureGuest = function () {
+  $('.change-password-input').val('')
+  $('.messaging').text('You cannot change the password of the guest account.').css('color', 'red')
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
@@ -73,6 +78,7 @@ module.exports = {
   signOutFailure,
   changePasswordSuccess,
   changePasswordFailure,
+  changePasswordFailureGuest,
   modalSwitch,
   modalSwitchOtherWay
 }

@@ -1,6 +1,7 @@
 const getFormFields = require('../../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
+const store = require('../store')
 
 const onSignUp = function (event) {
   event.preventDefault()
@@ -28,11 +29,15 @@ const onSignOut = function (event) {
 
 const onChangePassword = function (event) {
   event.preventDefault()
-  const form = event.target
-  const formData = getFormFields(form)
-  api.changePassword(formData)
-    .then(ui.changePasswordSuccess)
-    .catch(ui.changePasswordFailure)
+  if (store.user.email === 'guest@guest.com') {
+    ui.changePasswordFailureGuest()
+  } else {
+    const form = event.target
+    const formData = getFormFields(form)
+    api.changePassword(formData)
+      .then(ui.changePasswordSuccess)
+      .catch(ui.changePasswordFailure)
+  }
 }
 
 const onGuestLogin = function (event) {
