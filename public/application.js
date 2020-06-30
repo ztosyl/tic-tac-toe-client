@@ -96,7 +96,7 @@ module.exports = function (it) {
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var store = __webpack_require__(48)('wks');
+var store = __webpack_require__(49)('wks');
 var uid = __webpack_require__(34);
 var Symbol = __webpack_require__(2).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
@@ -265,7 +265,7 @@ module.exports = function (it, key) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = __webpack_require__(49);
+var IObject = __webpack_require__(50);
 var defined = __webpack_require__(24);
 module.exports = function (it) {
   return IObject(defined(it));
@@ -276,7 +276,7 @@ module.exports = function (it) {
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pIE = __webpack_require__(50);
+var pIE = __webpack_require__(51);
 var createDesc = __webpack_require__(33);
 var toIObject = __webpack_require__(15);
 var toPrimitive = __webpack_require__(23);
@@ -443,7 +443,7 @@ module.exports = function (KEY, exec) {
 // 5 -> Array#find
 // 6 -> Array#findIndex
 var ctx = __webpack_require__(19);
-var IObject = __webpack_require__(49);
+var IObject = __webpack_require__(50);
 var toObject = __webpack_require__(9);
 var toLength = __webpack_require__(6);
 var asc = __webpack_require__(87);
@@ -517,7 +517,7 @@ if (__webpack_require__(7)) {
   var wks = __webpack_require__(5);
   var createArrayMethod = __webpack_require__(26);
   var createArrayIncludes = __webpack_require__(54);
-  var speciesConstructor = __webpack_require__(52);
+  var speciesConstructor = __webpack_require__(53);
   var ArrayIterators = __webpack_require__(89);
   var Iterators = __webpack_require__(47);
   var $iterDetect = __webpack_require__(59);
@@ -974,7 +974,7 @@ if (__webpack_require__(7)) {
 
 var Map = __webpack_require__(119);
 var $export = __webpack_require__(0);
-var shared = __webpack_require__(48)('metadata');
+var shared = __webpack_require__(49)('metadata');
 var store = shared.store || (shared.store = new (__webpack_require__(122))());
 
 var getOrCreateMetadataMap = function (target, targetKey, create) {
@@ -1389,6 +1389,16 @@ module.exports = {};
 /* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+var store = {};
+module.exports = store;
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var core = __webpack_require__(18);
 var global = __webpack_require__(2);
 var SHARED = '__core-js_shared__';
@@ -1404,7 +1414,7 @@ var store = global[SHARED] || (global[SHARED] = {});
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
@@ -1416,14 +1426,14 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1443,7 +1453,7 @@ module.exports = function () {
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.3.20 SpeciesConstructor(O, defaultConstructor)
@@ -1456,16 +1466,6 @@ module.exports = function (O, D) {
   return C === undefined || (S = anObject(C)[SPECIES]) == undefined ? D : aFunction(S);
 };
 
-
-/***/ }),
-/* 53 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var store = {};
-module.exports = store;
 
 /***/ }),
 /* 54 */
@@ -1975,7 +1975,7 @@ module.exports = function (name) {
 /* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var shared = __webpack_require__(48)('keys');
+var shared = __webpack_require__(49)('keys');
 var uid = __webpack_require__(34);
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
@@ -2353,7 +2353,7 @@ addToUnscopables('entries');
 "use strict";
 
 
-var regexpFlags = __webpack_require__(51);
+var regexpFlags = __webpack_require__(52);
 
 var nativeExec = RegExp.prototype.exec;
 // This always refers to the native implementation, because the
@@ -2992,9 +2992,9 @@ module.exports.f = function getOwnPropertyNames(it) {
 var DESCRIPTORS = __webpack_require__(7);
 var getKeys = __webpack_require__(35);
 var gOPS = __webpack_require__(55);
-var pIE = __webpack_require__(50);
+var pIE = __webpack_require__(51);
 var toObject = __webpack_require__(9);
-var IObject = __webpack_require__(49);
+var IObject = __webpack_require__(50);
 var $assign = Object.assign;
 
 // should work with symbols and should have deterministic property order (V8 bug)
@@ -3207,7 +3207,7 @@ module.exports = function (iterator, fn, value, entries) {
 
 var aFunction = __webpack_require__(10);
 var toObject = __webpack_require__(9);
-var IObject = __webpack_require__(49);
+var IObject = __webpack_require__(50);
 var toLength = __webpack_require__(6);
 
 module.exports = function (that, callbackfn, aLen, memo, isRight) {
@@ -3300,7 +3300,7 @@ __webpack_require__(0)({
 // 21.2.5.3 get RegExp.prototype.flags()
 if (__webpack_require__(7) && /./g.flags != 'g') __webpack_require__(8).f(RegExp.prototype, 'flags', {
   configurable: true,
-  get: __webpack_require__(51)
+  get: __webpack_require__(52)
 });
 
 
@@ -3799,7 +3799,7 @@ module.exports = function (that, maxLength, fillString, left) {
 var DESCRIPTORS = __webpack_require__(7);
 var getKeys = __webpack_require__(35);
 var toIObject = __webpack_require__(15);
-var isEnum = __webpack_require__(50).f;
+var isEnum = __webpack_require__(51).f;
 module.exports = function (isEntries) {
   return function (it) {
     var O = toIObject(it);
@@ -3901,7 +3901,7 @@ module.exports = {
 "use strict";
 /* WEBPACK VAR INJECTION */(function($) {
 
-var store = __webpack_require__(53);
+var store = __webpack_require__(48);
 var gameEvents = __webpack_require__(134);
 // const events = require('./events')
 
@@ -3967,6 +3967,11 @@ var changePasswordFailure = function changePasswordFailure() {
   $('.messaging').text('Password change failed!').css('color', 'red');
 };
 
+var changePasswordFailureGuest = function changePasswordFailureGuest() {
+  $('.change-password-input').val('');
+  $('.messaging').text('You cannot change the password of the guest account.').css('color', 'red');
+};
+
 module.exports = {
   signUpSuccess: signUpSuccess,
   signUpFailure: signUpFailure,
@@ -3976,6 +3981,7 @@ module.exports = {
   signOutFailure: signOutFailure,
   changePasswordSuccess: changePasswordSuccess,
   changePasswordFailure: changePasswordFailure,
+  changePasswordFailureGuest: changePasswordFailureGuest,
   modalSwitch: modalSwitch,
   modalSwitchOtherWay: modalSwitchOtherWay
 };
@@ -3994,7 +4000,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 var func = __webpack_require__(135);
 var api = __webpack_require__(346);
 var ui = __webpack_require__(347);
-var store = __webpack_require__(53);
+var store = __webpack_require__(48);
 
 var updateAll = function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(game) {
@@ -11641,7 +11647,7 @@ var $export = __webpack_require__(0);
 var redefine = __webpack_require__(12);
 var META = __webpack_require__(31).KEY;
 var $fails = __webpack_require__(3);
-var shared = __webpack_require__(48);
+var shared = __webpack_require__(49);
 var setToStringTag = __webpack_require__(44);
 var uid = __webpack_require__(34);
 var wks = __webpack_require__(5);
@@ -11784,7 +11790,7 @@ if (!USE_NATIVE) {
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f = $defineProperty;
   __webpack_require__(38).f = gOPNExt.f = $getOwnPropertyNames;
-  __webpack_require__(50).f = $propertyIsEnumerable;
+  __webpack_require__(51).f = $propertyIsEnumerable;
   $GOPS.f = $getOwnPropertySymbols;
 
   if (DESCRIPTORS && !__webpack_require__(30)) {
@@ -11884,7 +11890,7 @@ setToStringTag(global.JSON, 'JSON', true);
 /* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(48)('native-function-to-string', Function.toString);
+module.exports = __webpack_require__(49)('native-function-to-string', Function.toString);
 
 
 /***/ }),
@@ -11894,7 +11900,7 @@ module.exports = __webpack_require__(48)('native-function-to-string', Function.t
 // all enumerable object keys, includes symbols
 var getKeys = __webpack_require__(35);
 var gOPS = __webpack_require__(55);
-var pIE = __webpack_require__(50);
+var pIE = __webpack_require__(51);
 module.exports = function (it) {
   var result = getKeys(it);
   var getSymbols = gOPS.f;
@@ -13386,7 +13392,7 @@ var toIObject = __webpack_require__(15);
 var arrayJoin = [].join;
 
 // fallback for not array-like strings
-$export($export.P + $export.F * (__webpack_require__(49) != Object || !__webpack_require__(22)(arrayJoin)), 'Array', {
+$export($export.P + $export.F * (__webpack_require__(50) != Object || !__webpack_require__(22)(arrayJoin)), 'Array', {
   join: function join(separator) {
     return arrayJoin.call(toIObject(this), separator === undefined ? ',' : separator);
   }
@@ -13733,7 +13739,7 @@ var inheritIfRequired = __webpack_require__(76);
 var dP = __webpack_require__(8).f;
 var gOPN = __webpack_require__(38).f;
 var isRegExp = __webpack_require__(58);
-var $flags = __webpack_require__(51);
+var $flags = __webpack_require__(52);
 var $RegExp = global.RegExp;
 var Base = $RegExp;
 var proto = $RegExp.prototype;
@@ -13781,7 +13787,7 @@ __webpack_require__(39)('RegExp');
 
 __webpack_require__(116);
 var anObject = __webpack_require__(1);
-var $flags = __webpack_require__(51);
+var $flags = __webpack_require__(52);
 var DESCRIPTORS = __webpack_require__(7);
 var TO_STRING = 'toString';
 var $toString = /./[TO_STRING];
@@ -14024,7 +14030,7 @@ __webpack_require__(61)('search', 1, function (defined, SEARCH, $search, maybeCa
 
 var isRegExp = __webpack_require__(58);
 var anObject = __webpack_require__(1);
-var speciesConstructor = __webpack_require__(52);
+var speciesConstructor = __webpack_require__(53);
 var advanceStringIndex = __webpack_require__(91);
 var toLength = __webpack_require__(6);
 var callRegExpExec = __webpack_require__(60);
@@ -14171,7 +14177,7 @@ var isObject = __webpack_require__(4);
 var aFunction = __webpack_require__(10);
 var anInstance = __webpack_require__(40);
 var forOf = __webpack_require__(41);
-var speciesConstructor = __webpack_require__(52);
+var speciesConstructor = __webpack_require__(53);
 var task = __webpack_require__(92).set;
 var microtask = __webpack_require__(93)();
 var newPromiseCapabilityModule = __webpack_require__(94);
@@ -14484,7 +14490,7 @@ var toAbsoluteIndex = __webpack_require__(36);
 var toLength = __webpack_require__(6);
 var isObject = __webpack_require__(4);
 var ArrayBuffer = __webpack_require__(2).ArrayBuffer;
-var speciesConstructor = __webpack_require__(52);
+var speciesConstructor = __webpack_require__(53);
 var $ArrayBuffer = buffer.ArrayBuffer;
 var $DataView = buffer.DataView;
 var $isView = $typed.ABV && ArrayBuffer.isView;
@@ -15142,7 +15148,7 @@ var $export = __webpack_require__(0);
 var defined = __webpack_require__(24);
 var toLength = __webpack_require__(6);
 var isRegExp = __webpack_require__(58);
-var getFlags = __webpack_require__(51);
+var getFlags = __webpack_require__(52);
 var RegExpProto = RegExp.prototype;
 
 var $RegExpStringIterator = function (regexp, string) {
@@ -15638,7 +15644,7 @@ $export($export.S, 'Math', { signbit: function signbit(x) {
 var $export = __webpack_require__(0);
 var core = __webpack_require__(18);
 var global = __webpack_require__(2);
-var speciesConstructor = __webpack_require__(52);
+var speciesConstructor = __webpack_require__(53);
 var promiseResolve = __webpack_require__(118);
 
 $export($export.P + $export.R, 'Promise', { 'finally': function (onFinally) {
@@ -16985,6 +16991,7 @@ $(function () {
 var getFormFields = __webpack_require__(343);
 var api = __webpack_require__(345);
 var ui = __webpack_require__(133);
+var store = __webpack_require__(48);
 
 var onSignUp = function onSignUp(event) {
   event.preventDefault();
@@ -17006,9 +17013,13 @@ var onSignOut = function onSignOut(event) {
 
 var onChangePassword = function onChangePassword(event) {
   event.preventDefault();
-  var form = event.target;
-  var formData = getFormFields(form);
-  api.changePassword(formData).then(ui.changePasswordSuccess).catch(ui.changePasswordFailure);
+  if (store.user.email === 'guest@guest.com') {
+    ui.changePasswordFailureGuest();
+  } else {
+    var form = event.target;
+    var formData = getFormFields(form);
+    api.changePassword(formData).then(ui.changePasswordSuccess).catch(ui.changePasswordFailure);
+  }
 };
 
 var onGuestLogin = function onGuestLogin(event) {
@@ -17119,7 +17130,7 @@ module.exports = addNestedValue;
 /* WEBPACK VAR INJECTION */(function($) {
 
 var config = __webpack_require__(132);
-var store = __webpack_require__(53);
+var store = __webpack_require__(48);
 
 var signUp = function signUp(data) {
   return $.ajax({
@@ -17175,7 +17186,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */(function($) {
 
 var config = __webpack_require__(132);
-var store = __webpack_require__(53);
+var store = __webpack_require__(48);
 
 var getFinishedGames = function getFinishedGames() {
   return $.ajax({
@@ -17230,7 +17241,7 @@ module.exports = {
 "use strict";
 /* WEBPACK VAR INJECTION */(function($) {
 
-var store = __webpack_require__(53);
+var store = __webpack_require__(48);
 var func = __webpack_require__(135);
 
 var createGameSuccess = function createGameSuccess(data) {
