@@ -16971,6 +16971,7 @@ $(function () {
   $('.close-password').on('click', function () {
     $('.messaging').text('');
   });
+  $('.guest-login').on('click', authEvents.onGuestLogin);
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(29)))
 
@@ -17010,11 +17011,22 @@ var onChangePassword = function onChangePassword(event) {
   api.changePassword(formData).then(ui.changePasswordSuccess).catch(ui.changePasswordFailure);
 };
 
+var onGuestLogin = function onGuestLogin(event) {
+  var data = {
+    'credentials': {
+      'email': 'guest@guest.com',
+      'password': 'g'
+    }
+  };
+  api.signIn(data).then(ui.signInSuccess).catch(ui.signInFailure);
+};
+
 module.exports = {
   onSignUp: onSignUp,
   onSignIn: onSignIn,
   onSignOut: onSignOut,
-  onChangePassword: onChangePassword
+  onChangePassword: onChangePassword,
+  onGuestLogin: onGuestLogin
 };
 
 /***/ }),
@@ -17167,7 +17179,7 @@ var store = __webpack_require__(53);
 
 var getFinishedGames = function getFinishedGames() {
   return $.ajax({
-    url: config.apiUrl + 'games?over=true',
+    url: config.apiUrl + '/games?over=true',
     headers: {
       Authorization: 'Token token=' + store.user.token
     }
@@ -17187,7 +17199,7 @@ var create = function create() {
 
 var update = function update(index, currPlayer, isOver) {
   return $.ajax({
-    url: config.apiUrl + 'games/' + store.game.id,
+    url: config.apiUrl + 'games/' + store.game._id,
     method: 'PATCH',
     data: {
       game: {
@@ -17223,6 +17235,7 @@ var func = __webpack_require__(135);
 
 var createGameSuccess = function createGameSuccess(data) {
   store.game = data.game;
+  console.log('game created successfully');
 };
 
 var createGameFailure = function createGameFailure() {
@@ -17297,7 +17310,8 @@ var updateSuccessExploder = function updateSuccessExploder(event) {
   game.isExploderPressed = true;
 };
 
-var updateFailure = function updateFailure() {
+var updateFailure = function updateFailure(error) {
+  console.error(error);
   $('<p class="card-text">Game could not be updated. Please try again.</p>').appendTo('.card-text:last').css('color', 'red');
 };
 
