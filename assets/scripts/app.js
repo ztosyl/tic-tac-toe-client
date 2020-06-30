@@ -18,4 +18,5 @@ $(() => {
   $('.close-password').on('click', function () {
     $('.messaging').text('')
   })
+  $('.guest-login').on('click', authEvents.onGuestLogin)
 })

@@ -35,9 +35,22 @@ const onChangePassword = function (event) {
     .catch(ui.changePasswordFailure)
 }
 
+const onGuestLogin = function (event) {
+  const data = {
+    'credentials': {
+      'email': 'guest@guest.com',
+      'password': 'g'
+    }
+  }
+  api.signIn(data)
+    .then(ui.signInSuccess)
+    .catch(ui.signInFailure)
+}
+
 module.exports = {
   onSignUp,
   onSignIn,
   onSignOut,
-  onChangePassword
+  onChangePassword,
+  onGuestLogin
 }

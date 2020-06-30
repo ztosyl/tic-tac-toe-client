@@ -3,6 +3,7 @@ const func = require('./functions')
 
 const createGameSuccess = function (data) {
   store.game = data.game
+  console.log('game created successfully')
 }
 
 const createGameFailure = function () {
@@ -77,7 +78,8 @@ const updateSuccessExploder = function (event) {
   game.isExploderPressed = true
 }
 
-const updateFailure = function () {
+const updateFailure = function (error) {
+  console.error(error)
   $(`<p class="card-text">Game could not be updated. Please try again.</p>`).appendTo('.card-text:last').css('color', 'red')
 }
 

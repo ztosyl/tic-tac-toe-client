@@ -3,7 +3,7 @@ const store = require('../store')
 
 const getFinishedGames = function () {
   return $.ajax({
-    url: config.apiUrl + 'games?over=true',
+    url: config.apiUrl + '/games?over=true',
     headers: {
       Authorization: 'Token token=' + store.user.token
     }
@@ -23,7 +23,7 @@ const create = function () {
 
 const update = function (index, currPlayer, isOver) {
   return $.ajax({
-    url: config.apiUrl + 'games/' + store.game.id,
+    url: config.apiUrl + 'games/' + store.game._id,
     method: 'PATCH',
     data: {
       game: {
